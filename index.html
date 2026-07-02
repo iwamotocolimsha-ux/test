@@ -1,116 +1,382 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>風会議 in こまつ | こまつの声を、次の一歩へ。</title>
-<style>
-:root {
-  --color-base: #FFFFFF;
-  --color-bg-light: #F7F9FA;
-  --color-main: #123A5A;
-  --color-accent: #2B8C8C;
-  --color-accent-hover: #227070;
-  --color-sub: #F5B942;
-  --color-text: #1F2933;
-  --color-text-light: #606F7B;
-  --color-border: #E4E7EB;
-  --color-error: #E74C3C;
-  --color-success: #2ECC71;
-  
-  --font-base: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-full: 9999px;
-  
-  --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
-  --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
-  --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
-  
-  --transition: all 0.3s ease;
-  
-  --space-xs: 8px;
-  --space-sm: 16px;
-  --space-md: 32px;
-  --space-lg: 64px;
-  --space-xl: 96px;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  font-family: var(--font-base);
-  color: var(--color-text);
-  background-color: var(--color-base);
-  line-height: 1.8;
-  font-size: 16px;
-}
-
-a { text-decoration: none; color: inherit; transition: var(--transition); }
-button { font-family: inherit; cursor: pointer; border: none; background: none; }
-
-h1, h2, h3 { color: var(--color-main); font-weight: bold; }
-.container { max-width: 1000px; margin: 0 auto; padding: 0 var(--space-md); }
-section { padding: var(--space-xl) 0; }
-.bg-light { background-color: var(--color-bg-light); }
-
-header {
-  position: fixed; top: 0; width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  z-index: 100;
-  border-bottom: 1px solid var(--color-border);
-  height: 72px;
-}
-.header-inner { display: flex; justify-content: space-between; align-items: center; height: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--space-md); }
-
-.btn { display: inline-flex; align-items: center; padding: 16px 32px; border-radius: var(--radius-full); font-weight: bold; background-color: var(--color-accent); color: var(--color-base); }
-
-/* 簡易フォームスタイル */
-.form-container { background: var(--color-base); padding: var(--space-lg); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
-.form-group { margin-bottom: var(--space-md); }
-input, textarea, select { width: 100%; padding: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="風会議 in こまつ｜小松市民の声を聞くプロジェクト">
+  <title>風会議 in こまつ｜小松市民の声を聞くプロジェクト</title>
+  <style>
+    :root{
+      --navy:#123A5A;
+      --teal:#2B8C8C;
+      --yellow:#F5B942;
+      --ink:#1F2933;
+      --muted:#5C6B77;
+      --line:#D9E2E8;
+      --bg:#F6F8F9;
+      --paper:#FFFFFF;
+      --danger:#B42318;
+      --success:#117A54;
+      --shadow:0 16px 44px rgba(18,58,90,.11);
+      --shadow-sm:0 8px 22px rgba(18,58,90,.08);
+      --radius:22px;
+      --radius-sm:14px;
+      --container:1160px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",YuGothic,Meiryo,sans-serif;line-height:1.75;letter-spacing:.02em}
+    a{color:inherit;text-decoration:none}
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    .container{width:min(calc(100% - 40px),var(--container));margin:0 auto}
+    .eyebrow{display:inline-flex;align-items:center;gap:.55rem;color:var(--teal);font-weight:800;font-size:.78rem;letter-spacing:.14em}
+    .eyebrow::before{content:"";width:28px;height:2px;background:var(--teal)}
+    h1,h2,h3,p{margin:0}
+    h1{font-size:clamp(2.65rem,6vw,5.55rem);line-height:1.16;letter-spacing:.02em;color:var(--navy)}
+    h2{font-size:clamp(1.72rem,3.7vw,3rem);line-height:1.35;color:var(--navy);letter-spacing:.01em}
+    h3{font-size:1.1rem;line-height:1.5;color:var(--navy)}
+    .lead{font-size:1.04rem;color:var(--muted);max-width:670px}
+    .section{padding:110px 0}
+    .section--tint{background:var(--bg)}
+    .section-head{display:grid;gap:16px;margin-bottom:44px}
+    .section-head--center{text-align:center;justify-items:center}
+    .site-header{position:fixed;z-index:50;top:0;left:0;width:100%;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(217,226,232,.8)}
+    .header-inner{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:9px;color:var(--navy);font-weight:900;white-space:nowrap;letter-spacing:.02em}
+    .brand-mark{position:relative;width:31px;height:31px;border-radius:50%;background:var(--navy)}
+    .brand-mark::before,.brand-mark::after{content:"";position:absolute;border:2px solid #fff;border-radius:50%}
+    .brand-mark::before{width:12px;height:12px;left:7px;top:7px;opacity:.95}
+    .brand-mark::after{width:19px;height:19px;left:4px;top:4px;opacity:.35}
+    .main-nav{display:flex;align-items:center;gap:20px;color:#455667;font-size:.86rem;font-weight:700}
+    .main-nav a{position:relative;padding:8px 0}
+    .main-nav a::after{content:"";position:absolute;bottom:3px;left:0;width:0;height:2px;background:var(--teal);transition:width .2s}
+    .main-nav a:hover::after,.main-nav a:focus-visible::after{width:100%}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:.65rem;border:1px solid transparent;border-radius:999px;min-height:50px;padding:12px 21px;font-weight:800;line-height:1.2;transition:transform .2s,box-shadow .2s,background .2s,color .2s,border .2s}
+    .button:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+    .button:focus-visible,.main-nav a:focus-visible,.faq-button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid rgba(245,185,66,.65);outline-offset:3px}
+    .button--primary{background:var(--navy);color:#fff}
+    .button--primary:hover{background:#0D304C}
+    .button--secondary{background:#fff;color:var(--navy);border-color:#C7D4DD}
+    .button--secondary:hover{border-color:var(--teal);color:var(--teal)}
+    .button--teal{background:var(--teal);color:#fff}
+    .button--small{min-height:42px;padding:9px 16px;font-size:.86rem}
+    .hero{position:relative;overflow:hidden;padding:154px 0 86px;background:linear-gradient(130deg,#fff 0%,#fff 53%,#EAF5F4 100%)}
+    .hero::before{content:"";position:absolute;width:580px;height:580px;border:1px solid rgba(43,140,140,.2);border-radius:50%;right:-220px;top:-160px;box-shadow:0 0 0 45px rgba(43,140,140,.05),0 0 0 100px rgba(43,140,140,.035)}
+    .hero-grid{position:relative;display:grid;grid-template-columns:1.18fr .82fr;gap:48px;align-items:center}
+    .hero-copy{display:grid;gap:23px}
+    .hero-copy h1 span{display:block;color:var(--teal)}
+    .hero-description{font-size:1.12rem;color:#425565;max-width:620px}
+    .hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .reassurance{display:flex;flex-wrap:wrap;gap:9px 18px;color:#506170;font-size:.84rem;font-weight:700}
+    .reassurance span{display:inline-flex;align-items:center;gap:7px}
+    .check{width:18px;height:18px;border-radius:50%;background:rgba(43,140,140,.14);display:inline-grid;place-items:center;color:var(--teal);font-weight:900;font-size:.72rem}
+    .info-card{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;border:1px solid rgba(18,58,90,.1);border-radius:var(--radius-sm);overflow:hidden;background:rgba(18,58,90,.1);max-width:650px;box-shadow:var(--shadow-sm)}
+    .info-card div{background:rgba(255,255,255,.94);padding:14px 16px;display:grid;gap:2px}
+    .info-card small{font-size:.74rem;color:var(--muted);font-weight:700}
+    .info-card strong{font-size:.91rem;color:var(--navy)}
+    .hero-art{position:relative;min-height:490px;display:grid;place-items:center}
+    .voice-orbit{position:relative;width:min(100%,430px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.98) 0 21%,rgba(255,255,255,.7) 22% 37%,rgba(43,140,140,.12) 38% 39%,rgba(255,255,255,.36) 40% 59%,rgba(18,58,90,.12) 60% 61%,transparent 62%);border:1px solid rgba(18,58,90,.12)}
+    .voice-orbit::before{content:"";position:absolute;inset:8%;border-radius:50%;border:1px dashed rgba(43,140,140,.38);animation:spin 24s linear infinite}
+    .voice-orbit::after{content:"";position:absolute;inset:25%;border-radius:50%;background:var(--navy);box-shadow:0 0 0 12px rgba(245,185,66,.2),0 0 0 26px rgba(43,140,140,.12)}
+    .talk-bubble{position:absolute;display:grid;place-items:center;min-width:80px;padding:13px 15px;border-radius:18px;color:var(--navy);font-weight:900;font-size:.86rem;background:#fff;border:1px solid rgba(18,58,90,.1);box-shadow:var(--shadow-sm)}
+    .talk-bubble::after{content:"";position:absolute;bottom:-7px;left:18px;width:14px;height:14px;background:inherit;border-right:inherit;border-bottom:inherit;transform:rotate(45deg)}
+    .talk-bubble--a{top:7%;left:0;background:#FFF9EA}
+    .talk-bubble--b{top:18%;right:-4%;background:#EBF8F6}
+    .talk-bubble--c{bottom:17%;left:-5%;background:#F1F5FB}
+    .talk-bubble--d{right:2%;bottom:6%;background:#fff}
+    .people{position:absolute;inset:0;pointer-events:none}
+    .person{position:absolute;width:46px;height:58px;border-radius:23px 23px 16px 16px;background:var(--teal);opacity:.93;box-shadow:0 0 0 7px rgba(255,255,255,.78)}
+    .person::before{content:"";position:absolute;left:11px;top:-18px;width:24px;height:24px;border-radius:50%;background:currentColor;color:inherit}
+    .person--1{left:21%;top:27%;background:#F5B942}.person--2{right:20%;top:26%;background:#123A5A}.person--3{left:28%;bottom:20%;background:#2B8C8C}.person--4{right:25%;bottom:21%;background:#D78058}
+    .scroll-note{display:flex;align-items:center;gap:10px;margin-top:8px;color:#60717E;font-weight:700;font-size:.82rem}
+    .scroll-note::before{content:"";width:27px;height:1px;background:currentColor}
+    .empathy-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .empathy-card{display:grid;gap:14px;text-align:left;padding:25px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);box-shadow:0 5px 16px rgba(18,58,90,.035);transition:transform .2s,border .2s,box-shadow .2s}
+    .empathy-card:hover{transform:translateY(-4px);border-color:rgba(43,140,140,.52);box-shadow:var(--shadow-sm)}
+    .icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:#EAF5F4;color:var(--teal)}
+    .icon svg{width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .empathy-card span{font-weight:800;line-height:1.7;font-size:.95rem}
+    .empathy-close{text-align:center;margin-top:34px;font-size:1.06rem;color:var(--navy);font-weight:800}
+    .process{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+    .process::before{content:"";position:absolute;top:40px;left:8%;right:8%;height:2px;background:linear-gradient(90deg,var(--teal),var(--yellow),var(--teal))}
+    .process-step{position:relative;z-index:1;text-align:center;padding:0 10px;display:grid;justify-items:center;gap:13px}
+    .process-icon{width:80px;height:80px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--navy);border:1px solid #C8D9E2;box-shadow:var(--shadow-sm)}
+    .process-icon svg{width:34px;height:34px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+    .process-step:nth-child(2) .process-icon,.process-step:nth-child(4) .process-icon{color:var(--teal)}
+    .process-step:nth-child(3) .process-icon{color:#B4780E}
+    .process-step p{font-size:.86rem;line-height:1.68;color:var(--muted)}
+    .reason-grid{display:grid;grid-template-columns:1fr .95fr;gap:58px;align-items:center}
+    .quote-stack{display:grid;gap:14px}
+    .quote{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:20px 22px 20px 61px;box-shadow:var(--shadow-sm);color:#3E4E5C;font-weight:700}
+    .quote::before{content:"“";position:absolute;left:20px;top:8px;color:var(--yellow);font-size:3.3rem;line-height:1;font-family:Georgia,serif}
+    .theme-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .theme-card{position:relative;display:grid;gap:15px;padding:29px;background:#fff;border-radius:var(--radius);border:1px solid var(--line);overflow:hidden;box-shadow:var(--shadow-sm)}
+    .theme-card::after{content:"";position:absolute;right:-35px;bottom:-35px;width:130px;height:130px;border-radius:50%;background:rgba(43,140,140,.08)}
+    .theme-card:nth-child(2)::after{background:rgba(245,185,66,.14)}
+    .theme-card:nth-child(3)::after{background:rgba(18,58,90,.08)}
+    .theme-index{font-size:.78rem;font-weight:900;color:var(--teal);letter-spacing:.1em}
+    .theme-card p{color:var(--muted);font-size:.93rem;min-height:3.6em}
+    .theme-card .button{justify-self:start;margin-top:2px;position:relative;z-index:1}
+    .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .trust-card{padding:28px;border-radius:var(--radius-sm);background:linear-gradient(155deg,#fff,#F7FBFB);border:1px solid #D7E7E6;display:grid;gap:12px}
+    .trust-card:nth-child(2){background:linear-gradient(155deg,#fff,#F8FAFD);border-color:#D8E1EC}
+    .trust-card:nth-child(3){background:linear-gradient(155deg,#fff,#FFFAF0);border-color:#F1E0B7}
+    .trust-card p{font-size:.91rem;color:var(--muted)}
+    .event-panel{display:grid;grid-template-columns:1fr .84fr;gap:45px;padding:48px;border-radius:var(--radius);background:var(--navy);color:#fff;overflow:hidden;position:relative}
+    .event-panel::after{content:"";position:absolute;width:360px;height:360px;right:-140px;top:-160px;border-radius:50%;border:1px solid rgba(255,255,255,.2);box-shadow:0 0 0 42px rgba(255,255,255,.06),0 0 0 94px rgba(255,255,255,.035)}
+    .event-panel h2{color:#fff}.event-panel .lead{color:rgba(255,255,255,.78)}
+    .event-copy{position:relative;z-index:1;display:grid;gap:18px}
+    .event-details{position:relative;z-index:1;display:grid;gap:10px;align-content:center}
+    .event-detail{display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.18);font-size:.92rem}
+    .event-detail span{color:rgba(255,255,255,.7)}.event-detail strong{text-align:right}
+    .form-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:42px;align-items:start}
+    .form-panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:38px;box-shadow:var(--shadow-sm)}
+    .form-panel h2{font-size:clamp(1.65rem,3vw,2.4rem)}
+    .form-note{margin-top:8px;font-size:.9rem;color:var(--muted)}
+    .form-aside{position:sticky;top:100px;display:grid;gap:16px}
+    .aside-card{background:#EAF5F4;border-radius:var(--radius-sm);padding:25px;display:grid;gap:11px}.aside-card--yellow{background:#FFF8E6}
+    .aside-card p{font-size:.9rem;color:#40535F}.aside-card ul{padding:0;margin:0;list-style:none;display:grid;gap:9px;font-size:.88rem;color:#40535F}.aside-card li{padding-left:24px;position:relative}.aside-card li::before{content:"✓";position:absolute;left:0;color:var(--teal);font-weight:900}
+    form{margin-top:28px;display:grid;gap:25px}
+    .field{display:grid;gap:9px}.field-label{font-weight:800;color:var(--navy);font-size:.94rem}.required{color:var(--danger);font-size:.77rem;margin-left:5px}.optional{color:var(--muted);font-size:.76rem;margin-left:5px;font-weight:700}
+    .field-help{font-size:.8rem;color:var(--muted);margin-top:-3px}
+    input[type="text"],input[type="email"],input[type="tel"],select,textarea{width:100%;border:1px solid #BFCED7;border-radius:12px;background:#fff;color:var(--ink);padding:13px 14px;min-height:48px;transition:border .2s,box-shadow .2s}
+    textarea{min-height:130px;resize:vertical}input:focus,textarea:focus,select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(43,140,140,.14)}
+    .choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.choice-grid--topic{grid-template-columns:repeat(2,1fr)}
+    .choice{position:relative;display:flex;align-items:center;gap:10px;min-height:50px;border:1px solid #C8D5DD;border-radius:12px;padding:11px 12px;background:#fff;color:#40515E;font-weight:700;font-size:.87rem;transition:.2s}
+    .choice:hover{border-color:var(--teal)}.choice input{width:18px;height:18px;accent-color:var(--teal);flex:0 0 auto}.choice:has(input:checked){border-color:var(--teal);background:#F0FAF8;color:var(--navy)}
+    .error{display:none;color:var(--danger);font-weight:700;font-size:.8rem;line-height:1.55}.field.invalid .error{display:block}.field.invalid input,.field.invalid textarea,.field.invalid select,.field.invalid .choice-grid{border-color:var(--danger)}
+    .consent{display:flex;align-items:flex-start;gap:10px;border-top:1px solid var(--line);padding-top:18px}.consent input{margin-top:5px;width:18px;height:18px;accent-color:var(--teal)}.consent label{font-size:.86rem;color:#4D5D69;font-weight:700;line-height:1.65}
+    .success-card{display:none;border-radius:var(--radius);padding:42px;background:#ECFBF5;border:1px solid #A5DCC1;text-align:center}.success-card.is-visible{display:grid;gap:13px;justify-items:center}.success-icon{width:62px;height:62px;display:grid;place-items:center;border-radius:50%;background:var(--success);color:#fff;font-size:1.85rem;font-weight:900}.success-card h2{font-size:1.65rem}.success-card p{color:#426254;max-width:530px}
+    .join-area{display:grid;grid-template-columns:.78fr 1.22fr;gap:42px;align-items:start}
+    .join-intro{display:grid;gap:18px}.join-points{display:grid;gap:10px}.join-point{display:flex;gap:11px;align-items:flex-start;color:#4D5D69;font-size:.91rem}.join-point strong{color:var(--navy)}
+    .faq{max-width:880px;margin:0 auto;display:grid;gap:11px}.faq-item{border:1px solid var(--line);border-radius:13px;background:#fff;overflow:hidden}.faq-button{width:100%;border:0;background:#fff;padding:18px 21px;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--navy);font-weight:850}.faq-button .plus{position:relative;width:20px;height:20px;flex:0 0 20px}.faq-button .plus::before,.faq-button .plus::after{content:"";position:absolute;left:1px;right:1px;top:9px;height:2px;border-radius:1px;background:var(--teal);transition:transform .2s}.faq-button .plus::after{transform:rotate(90deg)}.faq-item.is-open .faq-button .plus::after{transform:rotate(0)}.faq-answer{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}.faq-answer>div{overflow:hidden}.faq-answer p{padding:0 21px 20px;color:var(--muted);font-size:.91rem}.faq-item.is-open .faq-answer{grid-template-rows:1fr}
+    .cta-band{position:relative;overflow:hidden;background:var(--navy);color:#fff;padding:88px 0;text-align:center}.cta-band::before,.cta-band::after{content:"";position:absolute;border:1px solid rgba(255,255,255,.16);border-radius:50%}.cta-band::before{width:520px;height:520px;left:-270px;top:-350px;box-shadow:0 0 0 45px rgba(255,255,255,.035),0 0 0 105px rgba(255,255,255,.02)}.cta-band::after{width:420px;height:420px;right:-230px;bottom:-300px;box-shadow:0 0 0 40px rgba(43,140,140,.19),0 0 0 90px rgba(43,140,140,.09)}
+    .cta-content{position:relative;z-index:1;display:grid;justify-items:center;gap:18px}.cta-content h2{color:#fff}.cta-content p{max-width:660px;color:rgba(255,255,255,.78)}.cta-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}.cta-band .button--primary{background:var(--yellow);color:var(--navy)}.cta-band .button--secondary{background:transparent;border-color:rgba(255,255,255,.6);color:#fff}
+    .site-footer{background:#0D2B43;color:rgba(255,255,255,.74);padding:45px 0 78px}.footer-grid{display:grid;grid-template-columns:1fr auto;gap:26px;align-items:start}.site-footer .brand{color:#fff}.footer-meta{margin-top:15px;display:grid;gap:4px;font-size:.83rem}.footer-links{display:flex;flex-wrap:wrap;gap:15px;font-size:.82rem}.copyright{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.18);padding-top:18px;font-size:.75rem}
+    .mobile-cta{display:none}
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}.reveal.is-visible{opacity:1;transform:none}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @media (max-width:980px){.main-nav{display:none}.hero-grid,.reason-grid,.event-panel,.form-wrap,.join-area{grid-template-columns:1fr}.hero-art{min-height:380px}.hero{padding-bottom:66px}.empathy-grid{grid-template-columns:repeat(2,1fr)}.process{grid-template-columns:repeat(5,minmax(120px,1fr));overflow-x:auto;padding-bottom:8px}.process::before{min-width:650px}.process-step{min-width:125px}.theme-grid,.trust-grid{grid-template-columns:1fr}.form-aside{position:static;grid-template-columns:repeat(2,1fr)}.event-panel{padding:38px}.event-details{max-width:610px}.footer-grid{grid-template-columns:1fr}.footer-links{justify-content:flex-start}}
+    @media (max-width:640px){body{font-size:15px}.container{width:min(calc(100% - 28px),var(--container))}.section{padding:76px 0}.header-inner{height:64px}.brand{font-size:.92rem}.brand-mark{width:27px;height:27px}.brand-mark::before{width:10px;height:10px;left:6px;top:6px}.brand-mark::after{width:17px;height:17px;left:3px;top:3px}.header-inner .button{min-height:39px;padding:8px 12px;font-size:.76rem}.hero{padding:112px 0 60px}.hero-grid{gap:20px}.hero-copy{gap:18px}.hero-description{font-size:.98rem}.info-card{grid-template-columns:1fr 1fr}.info-card div{padding:11px}.info-card strong{font-size:.78rem}.hero-art{min-height:290px;order:2}.voice-orbit{width:285px}.talk-bubble{min-width:auto;padding:9px 11px;font-size:.71rem;border-radius:13px}.person{transform:scale(.76)}.talk-bubble--a{left:0}.talk-bubble--b{right:0}.talk-bubble--c{left:0}.talk-bubble--d{right:0}.empathy-grid{grid-template-columns:1fr}.empathy-card{padding:20px}.process{margin-left:-14px;margin-right:-14px;padding-left:14px;padding-right:14px}.reason-grid{gap:28px}.theme-grid{gap:13px}.theme-card{padding:23px}.trust-grid{gap:13px}.event-panel{padding:29px 22px;gap:28px}.event-detail{font-size:.84rem}.form-panel{padding:26px 18px}.form-aside{grid-template-columns:1fr}.choice-grid,.choice-grid--topic{grid-template-columns:1fr}.choice{min-height:48px}.join-area{gap:26px}.cta-band{padding:70px 0 93px}.site-footer{padding-bottom:95px}.mobile-cta{display:flex;position:fixed;z-index:45;left:12px;right:12px;bottom:10px;min-height:48px;box-shadow:0 12px 28px rgba(10,36,55,.22)}.scroll-note{display:none}}
+    @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+  </style>
 </head>
 <body>
-
-<header>
-  <div class="header-inner">
-    <div class="logo">風会議 in こまつ</div>
-  </div>
-</header>
-
-<main style="margin-top: 72px;">
-  <section>
-    <div class="container">
-      <h1>こまつの声を、次の一歩へ。</h1>
-      <p>小松で暮らし、働き、学ぶ中で感じていることを聞かせてください。</p>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="風会議 in こまつ トップへ"><span class="brand-mark" aria-hidden="true"></span>風会議 in こまつ</a>
+      <nav class="main-nav" aria-label="主要メニュー">
+        <a href="#about">風会議とは</a><a href="#voice-use">声の活かし方</a><a href="#themes">テーマ</a><a href="#voice-form">声を届ける</a>
+      </nav>
+      <a class="button button--primary button--small" href="#voice-form">3分で声を届ける</a>
     </div>
-  </section>
+  </header>
 
-  <section class="bg-light" id="voice-form">
-    <div class="container">
-      <div class="form-container">
-        <h2>声を届ける</h2>
-        <form id="voice-form-element">
-          <div class="form-group">
-            <label>小松で「変わるともっと良いと思うこと」</label>
-            <textarea name="v_change" required placeholder="例：交通の利便性、子育て支援など"></textarea>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">KOMATSU KAZE KAIGI</div>
+          <h1 id="hero-title">こまつの声を、<span>次の一歩へ。</span></h1>
+          <p class="hero-description">小松で暮らし、働き、学ぶ中で感じていることを聞かせてください。あなたの声を、地域の対話と次の行動につなげます。</p>
+          <div class="hero-actions">
+            <a class="button button--primary" href="#voice-form">3分で声を届ける <span aria-hidden="true">→</span></a>
+            <a class="button button--secondary" href="#about">風会議について知る</a>
           </div>
-          <button type="submit" class="btn">送信する</button>
-        </form>
+          <div class="reassurance"><span><i class="check" aria-hidden="true">✓</i>匿名での投稿も選べます</span><span><i class="check" aria-hidden="true">✓</i>専門知識や地域活動経験は必要ありません</span></div>
+          <div class="info-card" aria-label="開催情報">
+            <div><small>意見投稿</small><strong>所要時間 約3分</strong></div>
+            <div><small>投稿期限</small><strong>【投稿締切日】</strong></div>
+            <div><small>風会議開催日</small><strong>【開催日】</strong></div>
+            <div><small>会場</small><strong>【会場名】</strong></div>
+          </div>
+          <div class="scroll-note">小松で感じていることを、気軽に届けてください</div>
+        </div>
+        <div class="hero-art" aria-label="多様な声が集まり、対話につながる抽象イメージ" role="img">
+          <div class="voice-orbit"></div>
+          <div class="talk-bubble talk-bubble--a">くらし</div><div class="talk-bubble talk-bubble--b">しごと</div><div class="talk-bubble talk-bubble--c">子育て</div><div class="talk-bubble talk-bubble--d">未来</div>
+          <div class="people" aria-hidden="true"><span class="person person--1"></span><span class="person person--2"></span><span class="person person--3"></span><span class="person person--4"></span></div>
+        </div>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
 
-<script>
-  document.getElementById('voice-form-element').addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('送信されました。ご協力ありがとうございます。');
-  });
-</script>
+    <section class="section section--tint" aria-labelledby="empathy-title">
+      <div class="container">
+        <div class="section-head section-head--center reveal"><div class="eyebrow">YOUR EVERYDAY FEELINGS</div><h2 id="empathy-title">小松で、こんなことを<br>感じたことはありませんか？</h2></div>
+        <div class="empathy-grid">
+          <a class="empathy-card reveal" href="#voice-form" data-theme="つながる・動かす"><span class="icon"><svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-8 8H7l-3 2v-5a8 8 0 1 1 16-5z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></span><span>小松には好きなところがたくさんある。</span></a>
+          <a class="empathy-card reveal" href="#voice-form" data-theme="暮らす・育てる"><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10"/><path d="M9 20v-5h6v5M8 10h.01M16 10h.01"/></svg></span><span>もっと便利になったらいいと思うことがある。</span></a>
+          <a class="empathy-card reveal" href="#voice-form" data-theme="暮らす・育てる"><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 18c2-6 5-9 9-9s7 3 9 9"/><path d="M7 19v-2a5 5 0 0 1 10 0v2M9 6a3 3 0 1 0 6 0 3 3 0 0 0-6 0z"/></svg></span><span>若い人が暮らし続けやすい地域になってほしい。</span></a>
+          <a class="empathy-card reveal" href="#voice-form" data-theme="働く・挑戦する"><span class="icon"><svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/><path d="M12 7v5l3 2"/></svg></span><span>自分の意見を、地域の未来に役立てたい。</span></a>
+        </div>
+        <p class="empathy-close reveal">その実感が、地域を良くする最初のヒントになります。</p>
+      </div>
+    </section>
 
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-head section-head--center reveal"><div class="eyebrow">ABOUT KAZE KAIGI</div><h2 id="about-title">風会議は、声を集めて<br>終わらせない場です。</h2><p class="lead">市民、事業者、学生、行政、地域団体など、異なる立場の人が集まり、小松で感じていることを持ち寄り、対話を通じて次の行動や提言につなげます。</p></div>
+        <div class="process reveal" aria-label="風会議の流れ">
+          <article class="process-step"><span class="process-icon"><svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-8 8H7l-3 2v-5a8 8 0 1 1 16-5z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></span><h3>声を届ける</h3><p>暮らしや仕事の中で感じていることを投稿</p></article>
+          <article class="process-step"><span class="process-icon"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="7" height="6" rx="1"/><rect x="13" y="5" width="7" height="6" rx="1"/><rect x="4" y="13" width="7" height="6" rx="1"/><path d="M15 15h5M15 18h4"/></svg></span><h3>意見を整理する</h3><p>似た声や大切な論点を分かりやすく整理</p></article>
+          <article class="process-step"><span class="process-icon"><svg viewBox="0 0 24 24"><path d="M7 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M2 20v-1a5 5 0 0 1 10 0v1M12 20v-1a5 5 0 0 1 10 0v1"/><path d="M9 15h6"/></svg></span><h3>対話する</h3><p>異なる立場の人が、背景や考えを共有</p></article>
+          <article class="process-step"><span class="process-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M8 14a6 6 0 1 1 8 0c-1.2 1-2 2-2 4h-4c0-2-.8-3-2-4z"/></svg></span><h3>アイデアにする</h3><p>地域をより良くするヒントや提言を考える</p></article>
+          <article class="process-step"><span class="process-icon"><svg viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 5c5-3 8 3 14 0v9c-6 3-9-3-14 0"/></svg></span><h3>次の行動へつなげる</h3><p>できることから、地域の次の一歩へ</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint" aria-labelledby="reason-title">
+      <div class="container reason-grid">
+        <div class="section-head reveal"><div class="eyebrow">WHY YOUR VOICE MATTERS</div><h2 id="reason-title">地域の未来は、<br>日々の実感から始まる。</h2><p class="lead">数字や制度だけでは見えにくいことがあります。通勤、買い物、子育て、働き方、学び、地域とのつながり。日々の暮らしの中で感じていることにこそ、小松をより良くするヒントがあります。</p></div>
+        <div class="quote-stack reveal" aria-label="市民の声の例">
+          <div class="quote">子どもと過ごせる場所が、もっと気軽に見つかると嬉しい。</div>
+          <div class="quote">小松で働く魅力を、若い世代にもっと伝えたい。</div>
+          <div class="quote">地域のイベント情報を、ひとつで見られると便利。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="themes" aria-labelledby="themes-title">
+      <div class="container">
+        <div class="section-head section-head--center reveal"><div class="eyebrow">THREE THEMES</div><h2 id="themes-title">あなたが話してみたいテーマは<br>どれですか？</h2><p class="lead">気になるテーマを選ぶだけでも大丈夫です。考えがまとまっていなくても、今感じていることをそのまま聞かせてください。</p></div>
+        <div class="theme-grid">
+          <article class="theme-card reveal"><div class="theme-index">THEME 01</div><h3>働く・挑戦する</h3><p>小松で働き続けたい、挑戦したいと思える環境とは？</p><button class="button button--secondary button--small theme-select" type="button" data-theme="働く・挑戦する">このテーマで声を届ける</button></article>
+          <article class="theme-card reveal"><div class="theme-index">THEME 02</div><h3>暮らす・育てる</h3><p>子育て世代や若者が、住み続けたいと思える小松とは？</p><button class="button button--secondary button--small theme-select" type="button" data-theme="暮らす・育てる">このテーマで声を届ける</button></article>
+          <article class="theme-card reveal"><div class="theme-index">THEME 03</div><h3>つながる・動かす</h3><p>世代や立場を越えて、地域の行動を生むには？</p><button class="button button--secondary button--small theme-select" type="button" data-theme="つながる・動かす">このテーマで声を届ける</button></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint" id="voice-use" aria-labelledby="use-title">
+      <div class="container">
+        <div class="section-head section-head--center reveal"><div class="eyebrow">HOW YOUR VOICE IS USED</div><h2 id="use-title">いただいた声は、こう活かします。</h2><p class="lead">投稿いただいた内容は、個人が特定されない形で整理し、風会議での対話や、今後の地域課題の整理、提言・行動づくりに活用します。</p></div>
+        <div class="trust-grid">
+          <article class="trust-card reveal"><span class="icon"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v2"/></svg></span><h3>個人が特定されない形で扱います</h3><p>公開や共有の際は、氏名や個人を特定できる情報を取り除きます。</p></article>
+          <article class="trust-card reveal"><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 18V6M4 12h5l2-3 3 6 2-3h4"/><circle cx="4" cy="18" r="1.5"/><circle cx="20" cy="9" r="1.5"/></svg></span><h3>AIは整理の補助に使います</h3><p>AIは意見の分類や傾向の整理を補助します。結論や提言をAIだけで決めることはありません。</p></article>
+          <article class="trust-card reveal"><span class="icon"><svg viewBox="0 0 24 24"><path d="M7 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M2 20v-1a5 5 0 0 1 10 0v1M12 20v-1a5 5 0 0 1 10 0v1"/></svg></span><h3>人の対話を大切にします</h3><p>集まった声をもとに、参加者と関係者が対話を通じて次の一歩を考えます。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="join-info" aria-labelledby="join-info-title">
+      <div class="container event-panel reveal">
+        <div class="event-copy"><div class="eyebrow" style="color:#A8E6E1">JOIN THE DIALOGUE</div><h2 id="join-info-title">声を届けるだけでなく、<br>対話にも参加できます。</h2><p class="lead">投稿した声をもとに、さまざまな立場の人が集まり、小松の未来を考える風会議を開催します。初めての方、地域活動の経験がない方、一人での参加も歓迎です。</p><div><a class="button button--teal" href="#join-form">風会議に参加する <span aria-hidden="true">→</span></a></div></div>
+        <div class="event-details" aria-label="風会議開催情報">
+          <div class="event-detail"><span>日時</span><strong>【開催日・時間】</strong></div>
+          <div class="event-detail"><span>会場</span><strong>【会場名】</strong></div>
+          <div class="event-detail"><span>定員</span><strong>【定員】名</strong></div>
+          <div class="event-detail"><span>参加費</span><strong>【無料／金額】</strong></div>
+          <div class="event-detail"><span>主催</span><strong>【主催者名】</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint" id="voice-form" aria-labelledby="voice-title">
+      <div class="container form-wrap">
+        <div class="form-panel reveal">
+          <div class="eyebrow">SEND YOUR VOICE</div><h2 id="voice-title">あなたが感じる小松のことを、聞かせてください。</h2><p class="form-note">回答の目安は約3分です。すべての質問に答える必要はありません。</p>
+          <form id="voiceSubmission" novalidate>
+            <div class="field" data-required-group="role"><span class="field-label">あなたの立場<span class="required">必須</span></span><div class="choice-grid" role="radiogroup" aria-label="あなたの立場"><label class="choice"><input type="radio" name="role" value="小松市民">小松市民</label><label class="choice"><input type="radio" name="role" value="小松市で働く人">小松市で働く人</label><label class="choice"><input type="radio" name="role" value="学生">学生</label><label class="choice"><input type="radio" name="role" value="子育て世代">子育て世代</label><label class="choice"><input type="radio" name="role" value="事業者・経営者">事業者・経営者</label><label class="choice"><input type="radio" name="role" value="地域団体関係者">地域団体関係者</label><label class="choice"><input type="radio" name="role" value="その他">その他</label></div><span class="error">あなたの立場を選択してください。</span></div>
+            <div class="field"><label class="field-label" for="age">年代<span class="optional">任意</span></label><select id="age" name="age"><option value="">選択してください</option><option>10代</option><option>20代</option><option>30代</option><option>40代</option><option>50代</option><option>60代以上</option><option>回答しない</option></select></div>
+            <div class="field"><label class="field-label" for="good">小松で「好きなところ・残したいところ」<span class="optional">任意</span></label><textarea id="good" name="good" placeholder="例：人との距離が近いところ、自然が身近なところ、地域のお店が好き など"></textarea></div>
+            <div class="field" data-required="better"><label class="field-label" for="better">小松で「変わるともっと良いと思うこと」<span class="required">必須</span></label><textarea id="better" name="better" required placeholder="例：移動、子育て、働き方、地域情報、若者の居場所など、自由にお書きください"></textarea><span class="error">感じていることを自由にお書きください。</span></div>
+            <div class="field" data-required-group="topic"><span class="field-label">話してみたいテーマ<span class="required">必須</span></span><div class="choice-grid choice-grid--topic" role="radiogroup" aria-label="話してみたいテーマ"><label class="choice"><input type="radio" name="topic" value="働く・挑戦する">働く・挑戦する</label><label class="choice"><input type="radio" name="topic" value="暮らす・育てる">暮らす・育てる</label><label class="choice"><input type="radio" name="topic" value="つながる・動かす">つながる・動かす</label><label class="choice"><input type="radio" name="topic" value="その他">その他</label></div><span class="error">話してみたいテーマを選択してください。</span></div>
+            <div class="field" data-required-group="attendance"><span class="field-label">風会議への参加希望<span class="required">必須</span></span><div class="choice-grid" role="radiogroup" aria-label="風会議への参加希望"><label class="choice"><input type="radio" name="attendance" value="参加したい">参加したい</label><label class="choice"><input type="radio" name="attendance" value="検討したい">検討したい</label><label class="choice"><input type="radio" name="attendance" value="今回は意見投稿のみ">今回は意見投稿のみ</label></div><span class="error">参加希望を選択してください。</span></div>
+            <div class="field"><label class="field-label" for="voiceEmail">メールアドレス<span class="optional">任意</span></label><input id="voiceEmail" type="email" name="voiceEmail" placeholder="例：komatsu@example.jp"><span class="field-help">風会議の案内を希望する方のみ入力してください。</span><span class="error">メールアドレスの形式を確認してください。</span></div>
+            <div class="field" data-required-group="visibility"><span class="field-label">投稿内容の公開可否<span class="required">必須</span></span><div class="choice-grid" role="radiogroup" aria-label="投稿内容の公開可否"><label class="choice"><input type="radio" name="visibility" value="公開・共有してよい">個人が分からない形で公開・共有してよい</label><label class="choice"><input type="radio" name="visibility" value="整理・検討のみに使用">風会議内での整理・検討のみに使用してほしい</label></div><span class="error">投稿内容の取り扱い方針を選択してください。</span></div>
+            <div class="field consent" data-required="voiceConsent"><input id="voiceConsent" name="voiceConsent" type="checkbox" required><label for="voiceConsent">投稿内容の取り扱い方針に同意します。<span class="required">必須</span></label><span class="error">同意にチェックしてください。</span></div>
+            <button class="button button--primary" type="submit">この声を届ける <span aria-hidden="true">→</span></button>
+          </form>
+          <div class="success-card" id="voiceSuccess" role="status" aria-live="polite"><div class="success-icon">✓</div><h2>声を受け付けました。<br>ご協力ありがとうございます。</h2><p>いただいた声は、風会議での対話と次の行動づくりに活用します。</p></div>
+        </div>
+        <aside class="form-aside reveal" aria-label="意見投稿の案内"><div class="aside-card"><h3>気軽に、あなたの言葉で。</h3><p>正しい答えや、立派な提案である必要はありません。小松での日々の実感をそのまま聞かせてください。</p><ul><li>所要時間は約3分</li><li>匿名投稿も選択可能</li><li>当日参加しなくても大丈夫</li></ul></div><div class="aside-card aside-card--yellow"><h3>投稿いただいた後の流れ</h3><p>集まった声は、個人が分からない形で整理し、風会議の対話テーマと次の行動づくりに活用します。</p></div></aside>
+      </div>
+    </section>
+
+    <section class="section" id="join-form" aria-labelledby="join-title">
+      <div class="container join-area">
+        <div class="join-intro reveal"><div class="eyebrow">JOIN THE KAZE KAIGI</div><h2 id="join-title">風会議で、<br>一緒に考える。</h2><p class="lead">投稿した声をもとに、立場や世代を越えて対話します。初めての方も、一人での参加も歓迎です。</p><div class="join-points"><div class="join-point"><i class="check" aria-hidden="true">✓</i><span><strong>発言に自信がなくても大丈夫です。</strong><br>聞くことからの参加も歓迎します。</span></div><div class="join-point"><i class="check" aria-hidden="true">✓</i><span><strong>専門知識は必要ありません。</strong><br>日々の実感が大切な意見です。</span></div><div class="join-point"><i class="check" aria-hidden="true">✓</i><span><strong>参加費は【無料／金額】です。</strong><br>開催情報はお申し込み後にご案内します。</span></div></div></div>
+        <div class="form-panel reveal"><form id="joinSubmission" novalidate style="margin-top:0"><div class="field" data-required="joinName"><label class="field-label" for="joinName">氏名<span class="required">必須</span></label><input id="joinName" name="joinName" type="text" required placeholder="例：小松 太郎"><span class="error">氏名を入力してください。</span></div><div class="field"><label class="field-label" for="organization">所属・会社名<span class="optional">任意</span></label><input id="organization" name="organization" type="text" placeholder="例：株式会社〇〇／小松市在住"></div><div class="field"><label class="field-label" for="position">役職または立場<span class="optional">任意</span></label><input id="position" name="position" type="text" placeholder="例：会社員、学生、保護者、経営者"></div><div class="field" data-required="joinEmail"><label class="field-label" for="joinEmail">メールアドレス<span class="required">必須</span></label><input id="joinEmail" name="joinEmail" type="email" required placeholder="例：komatsu@example.jp"><span class="error">有効なメールアドレスを入力してください。</span></div><div class="field"><label class="field-label" for="phone">電話番号<span class="optional">任意</span></label><input id="phone" name="phone" type="tel" inputmode="tel" placeholder="例：090-1234-5678"></div><div class="field" data-required="joinTopic"><label class="field-label" for="joinTopic">参加希望テーマ<span class="required">必須</span></label><select id="joinTopic" name="joinTopic" required><option value="">選択してください</option><option>働く・挑戦する</option><option>暮らす・育てる</option><option>つながる・動かす</option><option>その他</option></select><span class="error">参加希望テーマを選択してください。</span></div><div class="field"><label class="field-label" for="advanceOpinion">事前に共有したい意見<span class="optional">任意</span></label><textarea id="advanceOpinion" name="advanceOpinion" placeholder="当日話してみたいことがあれば、ご自由にお書きください。"></textarea></div><div class="field"><label class="field-label" for="support">配慮してほしいこと<span class="optional">任意</span></label><input id="support" name="support" type="text" placeholder="例：車いす利用、子ども同伴、その他"></div><div class="field consent" data-required="joinConsent"><input id="joinConsent" name="joinConsent" type="checkbox" required><label for="joinConsent">個人情報の取り扱いに同意します。<span class="required">必須</span></label><span class="error">同意にチェックしてください。</span></div><button class="button button--primary" type="submit">風会議に申し込む <span aria-hidden="true">→</span></button></form><div class="success-card" id="joinSuccess" role="status" aria-live="polite"><div class="success-icon">✓</div><h2>お申し込みを受け付けました。</h2><p>開催前に、登録いただいたメールアドレスへ詳細をご案内します。</p></div></div>
+      </div>
+    </section>
+
+    <section class="section section--tint" aria-labelledby="faq-title">
+      <div class="container"><div class="section-head section-head--center reveal"><div class="eyebrow">FAQ</div><h2 id="faq-title">よくある質問</h2></div><div class="faq reveal">
+        <article class="faq-item"><button class="faq-button" type="button" aria-expanded="false"><span>初めてでも参加できますか？</span><i class="plus" aria-hidden="true"></i></button><div class="faq-answer"><div><p>もちろんです。初めての方や、地域活動の経験がない方も歓迎しています。日々の暮らしの中で感じていることが、対話の大切な出発点になります。</p></div></div></article>
+        <article class="faq-item"><button class="faq-button" type="button" aria-expanded="false"><span>発言に自信がなくても大丈夫ですか？</span><i class="plus" aria-hidden="true"></i></button><div class="faq-answer"><div><p>大丈夫です。聞くことから参加していただけます。無理に発言を求めることはありませんので、ご自身のペースでご参加ください。</p></div></div></article>
+        <article class="faq-item"><button class="faq-button" type="button" aria-expanded="false"><span>一人で参加しても大丈夫ですか？</span><i class="plus" aria-hidden="true"></i></button><div class="faq-answer"><div><p>大丈夫です。お一人で参加される方も安心して交流できるよう、進行役がサポートします。</p></div></div></article>
+        <article class="faq-item"><button class="faq-button" type="button" aria-expanded="false"><span>事前に準備するものはありますか？</span><i class="plus" aria-hidden="true"></i></button><div class="faq-answer"><div><p>特別な準備は必要ありません。小松で感じていることや、気になっていることを、そのままお持ちください。</p></div></div></article>
+        <article class="faq-item"><button class="faq-button" type="button" aria-expanded="false"><span>意見投稿だけでも参加になりますか？</span><i class="plus" aria-hidden="true"></i></button><div class="faq-answer"><div><p>はい。会場に来られない場合でも、意見を届けることで風会議に関わることができます。いただいた声は、当日の対話に活用します。</p></div></div></article>
+        <article class="faq-item"><button class="faq-button" type="button" aria-expanded="false"><span>投稿した意見はどのように使われますか？</span><i class="plus" aria-hidden="true"></i></button><div class="faq-answer"><div><p>個人が特定されない形で整理し、当日の対話、地域課題の整理、今後の提言や行動づくりに活用します。公開の可否は投稿時に選択できます。</p></div></div></article>
+        <article class="faq-item"><button class="faq-button" type="button" aria-expanded="false"><span>AIはどのように使われますか？</span><i class="plus" aria-hidden="true"></i></button><div class="faq-answer"><div><p>AIは、多くの意見を分類し、似た声や傾向を整理する補助として使います。結論や提言は、参加者と関係者による対話を通じて検討します。</p></div></div></article>
+        <article class="faq-item"><button class="faq-button" type="button" aria-expanded="false"><span>子ども連れでも参加できますか？</span><i class="plus" aria-hidden="true"></i></button><div class="faq-answer"><div><p>会場や運営体制によって対応が異なります。申込フォームの「配慮してほしいこと」にご記入いただければ、可能な範囲でご案内します。</p></div></div></article>
+      </div></div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="last-title"><div class="container cta-content reveal"><div class="eyebrow" style="color:#A8E6E1">ONE MORE STEP</div><h2 id="last-title">小松の未来を、誰か任せにしない。</h2><p>あなたが日々感じていることが、地域の次の一歩になるかもしれません。</p><div class="cta-actions"><a class="button button--primary" href="#voice-form">3分で声を届ける <span aria-hidden="true">→</span></a><a class="button button--secondary" href="#join-form">風会議に参加する</a></div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>風会議 in こまつ</a><div class="footer-meta"><span>主催： 【主催者名】</span><span>協力・後援： 【協力・後援団体名】</span><span>お問い合わせ： 【メールアドレス】</span></div></div><div class="footer-links"><a href="#voice-use">個人情報の取り扱い</a><a href="#faq-title">よくある質問</a><a href="#voice-form">声を届ける</a></div><div class="copyright">© 【年度】 風会議 in こまつ. All Rights Reserved.</div></div></footer>
+  <a class="button button--primary mobile-cta" href="#voice-form">3分で声を届ける <span aria-hidden="true">→</span></a>
+
+  <script>
+    (function(){
+      const $ = (s, root=document) => root.querySelector(s);
+      const $$ = (s, root=document) => [...root.querySelectorAll(s)];
+      const voiceForm = $('#voiceSubmission');
+      const voiceSuccess = $('#voiceSuccess');
+      const joinForm = $('#joinSubmission');
+      const joinSuccess = $('#joinSuccess');
+
+      function setTheme(theme){
+        const choice = $(`input[name="topic"][value="${theme}"]`);
+        if(choice){choice.checked = true; choice.dispatchEvent(new Event('change',{bubbles:true}));}
+        $('#voice-form').scrollIntoView({behavior:'smooth',block:'start'});
+        setTimeout(()=>choice && choice.focus({preventScroll:true}),550);
+      }
+      $$('.theme-select').forEach(btn=>btn.addEventListener('click',()=>setTheme(btn.dataset.theme)));
+      $$('.empathy-card').forEach(card=>card.addEventListener('click',()=>{const theme=card.dataset.theme;if(theme)setTimeout(()=>setTheme(theme),40)}));
+
+      function clearError(field){field.classList.remove('invalid');}
+      function showError(field){field.classList.add('invalid');}
+      function validateForm(form){
+        let valid=true;
+        $$('[data-required]',form).forEach(field=>{
+          const target=field.querySelector('[required]');
+          let ok=true;
+          if(target.type==='checkbox') ok=target.checked;
+          else if(target.type==='email') ok=target.value.trim()!=='' && target.validity.valid;
+          else ok=target.value.trim()!=='';
+          if(ok) clearError(field); else {showError(field);valid=false;}
+        });
+        $$('[data-required-group]',form).forEach(field=>{
+          const group=field.dataset.requiredGroup;
+          const ok=!!$(`input[name="${group}"]:checked`,field);
+          if(ok) clearError(field); else {showError(field);valid=false;}
+        });
+        const optionalEmail = $('#voiceEmail',form);
+        if(optionalEmail && optionalEmail.value.trim() && !optionalEmail.validity.valid){showError(optionalEmail.closest('.field'));valid=false;} else if(optionalEmail){clearError(optionalEmail.closest('.field'));}
+        return valid;
+      }
+      function activateFieldListeners(form){
+        $$('input,textarea,select',form).forEach(input=>{
+          input.addEventListener('input',()=>{const field=input.closest('.field');if(field)clearError(field)});
+          input.addEventListener('change',()=>{const field=input.closest('.field');if(field)clearError(field)});
+        });
+      }
+      activateFieldListeners(voiceForm);activateFieldListeners(joinForm);
+      voiceForm.addEventListener('submit',e=>{e.preventDefault();if(!validateForm(voiceForm)){const first=$('.invalid',voiceForm);if(first)first.scrollIntoView({behavior:'smooth',block:'center'});return;}voiceForm.style.display='none';voiceSuccess.classList.add('is-visible');voiceSuccess.scrollIntoView({behavior:'smooth',block:'center'});});
+      joinForm.addEventListener('submit',e=>{e.preventDefault();if(!validateForm(joinForm)){const first=$('.invalid',joinForm);if(first)first.scrollIntoView({behavior:'smooth',block:'center'});return;}joinForm.style.display='none';joinSuccess.classList.add('is-visible');joinSuccess.scrollIntoView({behavior:'smooth',block:'center'});});
+
+      $$('.faq-item').forEach(item=>{
+        const btn=$('.faq-button',item);
+        btn.addEventListener('click',()=>{const open=item.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(open));});
+      });
+      const observer = new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}}),{threshold:.12});
+      $$('.reveal').forEach(el=>observer.observe(el));
+    })();
+  </script>
 </body>
 </html>
