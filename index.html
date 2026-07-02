@@ -3,1049 +3,596 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>【祭り名】 第４９回小松市どんどんまつり</title>
-<!-- 以下の <style> タグ内にCSSが含まれています -->
+<title>【風会議 in こまつ】LP構成案・Web戦略設計書</title>
 <style>
-  :root {
-    --color-primary: #D32F2F;
-    --color-primary-dark: #B71C1C;
-    --color-accent: #FFC107;
-    --color-accent-hover: #FFA000;
-    --color-text: #222222;
-    --color-text-light: #555555;
-    --color-bg: #F8F9FA;
-    --color-white: #FFFFFF;
-    --color-border: #E0E0E0;
-    --color-error: #D32F2F;
-    --color-success: #2E7D32;
-    
-    --font-base: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-    
-    --space-xs: 8px;
-    --space-sm: 16px;
-    --space-md: 32px;
-    --space-lg: 64px;
-    --space-xl: 120px;
-    
-    --radius-sm: 4px;
-    --radius-md: 8px;
-    --radius-full: 999px;
-    
-    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-    
-    --container-max: 1200px;
-    --transition: all 0.3s ease;
-  }
-
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  html {
-    font-size: 16px;
-    scroll-behavior: smooth;
-  }
-
-  body {
-    font-family: var(--font-base);
-    color: var(--color-text);
-    background-color: var(--color-white);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-    transition: var(--transition);
-  }
-
-  ul, ol {
-    list-style: none;
-  }
-
-  .container {
-    width: 100%;
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 var(--space-sm);
-  }
-
-  .section {
-    padding: var(--space-xl) 0;
-  }
-
-  .section-bg {
-    background-color: var(--color-bg);
-  }
-
-  .section-title {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    text-align: center;
-    margin-bottom: var(--space-lg);
-    position: relative;
-    padding-bottom: var(--space-sm);
-    color: var(--color-primary-dark);
-  }
-
-  .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background-color: var(--color-accent);
-    border-radius: 2px;
-  }
-
-  /* Buttons */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px 40px;
-    font-size: 1.125rem;
-    font-weight: bold;
-    border-radius: var(--radius-full);
-    cursor: pointer;
-    border: none;
-    transition: var(--transition);
-    text-align: center;
-    line-height: 1.4;
-    text-decoration: none;
-  }
-
-  .btn:focus-visible {
-    outline: 3px solid var(--color-accent);
-    outline-offset: 2px;
-  }
-
-  .btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
-  }
-
-  .btn-primary:hover, .btn-primary:focus {
-    background-color: var(--color-primary-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(211, 47, 47, 0.3);
-    color: var(--color-white);
-  }
-
-  .btn-accent {
-    background-color: var(--color-accent);
-    color: var(--color-text);
-    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
-  }
-
-  .btn-accent:hover, .btn-accent:focus {
-    background-color: var(--color-accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 193, 7, 0.4);
-  }
-
-  /* Header */
-  .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    box-shadow: var(--shadow-sm);
-    z-index: 1000;
-  }
-
-  .header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
-  }
-
-  .header-logo {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: var(--color-primary);
-  }
-
-  .header-nav {
-    display: none;
-  }
-
-  .header-nav-list {
-    display: flex;
-    gap: var(--space-md);
-  }
-
-  .header-nav-link {
-    font-weight: bold;
-    font-size: 0.9375rem;
-    color: var(--color-text);
-  }
-
-  .header-nav-link:hover {
-    color: var(--color-primary);
-  }
-
-  @media (min-width: 992px) {
-    .header-nav {
-      display: block;
+    :root {
+        --primary-color: #0078D4; /* 信頼感と「風」を感じるブルー */
+        --accent-color: #FF8C00; /* 行動を促す暖色（オレンジ） */
+        --text-main: #333333;
+        --bg-light: #F8F9FA;
+        --border-color: #DDDDDD;
     }
-  }
-
-  /* First View (Hero) */
-  .hero {
-    position: relative;
-    padding-top: 70px;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    background-color: #111;
-    color: var(--color-white);
-    overflow: hidden;
-  }
-
-  .hero-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.5;
-    z-index: 1;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-    padding: var(--space-xl) 0;
-  }
-
-  .hero-target {
-    display: inline-block;
-    background-color: var(--color-white);
-    color: var(--color-primary-dark);
-    padding: 8px 24px;
-    border-radius: var(--radius-full);
-    font-weight: bold;
-    font-size: 0.875rem;
-    margin-bottom: var(--space-md);
-    box-shadow: var(--shadow-md);
-  }
-
-  .hero-title {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    line-height: 1.2;
-    margin-bottom: var(--space-sm);
-    text-shadow: 0 4px 12px rgba(0,0,0,0.6);
-  }
-
-  .hero-catch {
-    font-size: clamp(1.25rem, 3vw, 1.75rem);
-    font-weight: bold;
-    color: var(--color-accent);
-    margin-bottom: var(--space-lg);
-    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
-  }
-
-  .hero-info {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    border-radius: var(--radius-md);
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: var(--space-md);
-    margin-bottom: var(--space-lg);
-    text-align: left;
-    display: inline-block;
-    max-width: 100%;
-  }
-
-  .hero-info-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: var(--space-sm);
-  }
-
-  .hero-info-item:last-child {
-    margin-bottom: 0;
-  }
-
-  .hero-info-icon {
-    width: 24px;
-    height: 24px;
-    fill: var(--color-accent);
-    margin-right: var(--space-sm);
-    flex-shrink: 0;
-  }
-
-  /* About Section */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
-    align-items: center;
-  }
-
-  @media (min-width: 992px) {
-    .about-grid {
-      grid-template-columns: 1fr 1fr;
+    body {
+        font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+        color: var(--text-main);
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f7f6;
     }
-  }
-
-  .about-text p {
-    font-size: 1.125rem;
-    line-height: 1.8;
-    color: var(--color-text-light);
-  }
-
-  .about-image {
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
-    overflow: hidden;
-  }
-
-  /* Events Section */
-  .event-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-md);
-  }
-
-  @media (min-width: 768px) {
-    .event-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .container {
+        max-width: 1000px;
+        margin: 20px auto;
+        background: #ffffff;
+        padding: 40px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        border-radius: 8px;
     }
-  }
-
-  .event-card {
-    background: var(--color-white);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition);
-    display: flex;
-    flex-direction: column;
-  }
-
-  .event-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .event-img-wrap {
-    position: relative;
-    padding-top: 60%;
-    overflow: hidden;
-  }
-
-  .event-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-
-  .event-card:hover .event-img {
-    transform: scale(1.05);
-  }
-
-  .event-body {
-    padding: var(--space-md);
-    flex-grow: 1;
-  }
-
-  .event-title {
-    font-size: 1.25rem;
-    color: var(--color-primary-dark);
-    margin-bottom: var(--space-xs);
-  }
-
-  .event-desc {
-    color: var(--color-text-light);
-  }
-
-  /* Mid CTA */
-  .mid-cta {
-    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
-    color: var(--color-white);
-    text-align: center;
-  }
-
-  .mid-cta-title {
-    font-size: clamp(1.5rem, 4vw, 2.25rem);
-    margin-bottom: var(--space-md);
-  }
-
-  /* Info / Access Section */
-  .info-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--color-white);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .info-table th, .info-table td {
-    padding: var(--space-md);
-    text-align: left;
-    border-bottom: 1px solid var(--color-border);
-    vertical-align: top;
-  }
-
-  .info-table th {
-    background-color: var(--color-bg);
-    color: var(--color-primary-dark);
-    font-weight: bold;
-    width: 30%;
-  }
-
-  .info-table tr:last-child th, .info-table tr:last-child td {
-    border-bottom: none;
-  }
-
-  .parking-list {
-    margin-top: var(--space-xs);
-    padding-left: var(--space-sm);
-  }
-
-  .parking-list li {
-    position: relative;
-    margin-bottom: 4px;
-  }
-
-  .parking-list li::before {
-    content: '・';
-    position: absolute;
-    left: -1em;
-  }
-
-  @media (max-width: 767px) {
-    .info-table th, .info-table td {
-      display: block;
-      width: 100%;
+    h1 {
+        text-align: center;
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 10px;
+        margin-bottom: 40px;
     }
-    .info-table th {
-      border-bottom: none;
-      padding-bottom: var(--space-xs);
+    h2 {
+        background-color: var(--primary-color);
+        color: #ffffff;
+        padding: 10px 15px;
+        border-radius: 4px;
+        margin-top: 40px;
     }
-    .info-table td {
-      padding-top: 0;
-      margin-bottom: var(--space-sm);
+    h3 {
+        color: var(--primary-color);
+        border-left: 4px solid var(--primary-color);
+        padding-left: 10px;
+        margin-top: 30px;
     }
-  }
-
-  /* FAQ Section */
-  .faq-container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .faq-item {
-    margin-bottom: var(--space-sm);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    background-color: var(--color-white);
-    overflow: hidden;
-  }
-
-  .faq-question {
-    width: 100%;
-    text-align: left;
-    padding: var(--space-md);
-    background: none;
-    border: none;
-    font-size: 1.125rem;
-    font-weight: bold;
-    color: var(--color-text);
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: var(--transition);
-  }
-
-  .faq-question:hover, .faq-question:focus-visible {
-    background-color: var(--color-bg);
-    outline: none;
-  }
-
-  .faq-icon {
-    width: 24px;
-    height: 24px;
-    fill: var(--color-primary);
-    transition: transform 0.3s ease;
-    flex-shrink: 0;
-  }
-
-  .faq-question[aria-expanded="true"] .faq-icon {
-    transform: rotate(180deg);
-  }
-
-  .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-    background-color: var(--color-white);
-  }
-
-  .faq-answer-inner {
-    padding: 0 var(--space-md) var(--space-md);
-    color: var(--color-text-light);
-    border-top: 1px solid transparent;
-  }
-  
-  .faq-question[aria-expanded="true"] + .faq-answer .faq-answer-inner {
-    border-top-color: var(--color-bg);
-    padding-top: var(--space-md);
-  }
-
-  /* Form Section */
-  .form-container {
-    max-width: 700px;
-    margin: 0 auto;
-    background: var(--color-white);
-    padding: var(--space-lg);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--color-border);
-  }
-
-  .form-group {
-    margin-bottom: var(--space-md);
-  }
-
-  .form-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: var(--space-xs);
-    color: var(--color-text);
-  }
-
-  .form-required {
-    color: var(--color-white);
-    background-color: var(--color-error);
-    font-size: 0.75rem;
-    padding: 2px 8px;
-    border-radius: var(--radius-sm);
-    margin-left: 8px;
-    vertical-align: middle;
-  }
-
-  .form-control {
-    width: 100%;
-    padding: 14px 16px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    font-family: inherit;
-    font-size: 1rem;
-    transition: var(--transition);
-    background-color: var(--color-bg);
-  }
-
-  .form-control:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    background-color: var(--color-white);
-    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
-  }
-
-  textarea.form-control {
-    min-height: 160px;
-    resize: vertical;
-  }
-
-  .form-error-msg {
-    color: var(--color-error);
-    font-size: 0.875rem;
-    margin-top: 6px;
-    display: none;
-  }
-
-  .form-control.is-error {
-    border-color: var(--color-error);
-    background-color: #FFEBEE;
-  }
-
-  .form-control.is-error + .form-error-msg {
-    display: block;
-  }
-
-  .form-submit {
-    text-align: center;
-    margin-top: var(--space-lg);
-  }
-
-  .form-success-msg {
-    display: none;
-    background-color: #E8F5E9;
-    color: var(--color-success);
-    padding: var(--space-md);
-    border-radius: var(--radius-sm);
-    border: 1px solid #A5D6A7;
-    text-align: center;
-    font-weight: bold;
-    margin-top: var(--space-md);
-  }
-
-  /* Footer */
-  .footer {
-    background-color: #222222;
-    color: var(--color-white);
-    padding: var(--space-lg) 0 var(--space-md);
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
-    margin-bottom: var(--space-lg);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: var(--space-lg);
-  }
-
-  @media (min-width: 768px) {
-    .footer-grid {
-      grid-template-columns: 2fr 1fr;
+    p {
+        margin-bottom: 15px;
     }
-  }
-
-  .footer-info-title {
-    font-size: 1.25rem;
-    color: var(--color-accent);
-    margin-bottom: var(--space-sm);
-  }
-
-  .footer-info p {
-    margin-bottom: var(--space-xs);
-    opacity: 0.9;
-  }
-
-  .footer-link {
-    color: var(--color-accent);
-    text-decoration: underline;
-  }
-
-  .footer-link:hover {
-    color: var(--color-white);
-  }
-
-  .footer-nav {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-  }
-
-  .footer-nav a {
-    opacity: 0.7;
-  }
-
-  .footer-nav a:hover {
-    opacity: 1;
-    color: var(--color-accent);
-    text-decoration: underline;
-  }
-
-  .footer-copy {
-    text-align: center;
-    font-size: 0.875rem;
-    opacity: 0.5;
-  }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        font-size: 0.95em;
+    }
+    th, td {
+        border: 1px solid var(--border-color);
+        padding: 12px;
+        text-align: left;
+    }
+    th {
+        background-color: var(--bg-light);
+        font-weight: bold;
+        white-space: nowrap;
+    }
+    .cta-box {
+        background-color: #fff3e0;
+        border-left: 4px solid var(--accent-color);
+        padding: 15px;
+        margin: 15px 0;
+    }
+    .important-note {
+        background-color: #e3f2fd;
+        padding: 15px;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+    .flow-diagram {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--bg-light);
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        flex-wrap: wrap;
+    }
+    .flow-step {
+        flex: 1;
+        min-width: 120px;
+        margin: 10px;
+    }
+    .flow-arrow {
+        color: var(--primary-color);
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    ul, ol {
+        margin-bottom: 15px;
+        padding-left: 20px;
+    }
+    @media (max-width: 768px) {
+        .container {
+            padding: 20px;
+        }
+        .flow-diagram {
+            flex-direction: column;
+        }
+        .flow-arrow {
+            transform: rotate(90deg);
+            margin: 10px 0;
+        }
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            margin-top: 10px;
+        }
+        td {
+            border-top: none;
+        }
+    }
 </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="container header-inner">
-      <div class="header-logo">
-        <a href="#">【祭り名】 第４９回小松市どんどんまつり</a>
-      </div>
-      <nav class="header-nav" aria-label="メインナビゲーション">
-        <ul class="header-nav-list">
-          <li><a href="#about" class="header-nav-link">祭りの特徴</a></li>
-          <li><a href="#events" class="header-nav-link">イベント内容</a></li>
-          <li><a href="#info" class="header-nav-link">アクセス・駐車場</a></li>
-          <li><a href="#faq" class="header-nav-link">よくある質問</a></li>
-        </ul>
-      </nav>
-      <div style="display: flex; align-items: center;">
-        <a href="#contact" class="btn btn-primary" style="padding: 10px 24px; font-size: 0.9375rem;">お問い合わせ</a>
-      </div>
+<div class="container">
+    <h1>【風会議 in こまつ】LP構成案・Web戦略設計書</h1>
+    <p>ご提示いただいた要件に基づき、地域プロジェクト専門の視点から、小松市の「風会議」ランディングページ（LP）の構成案と戦略を設計しました。実制作（デザイン・コーディング）へスムーズに移行できるよう、具体度を高く設定しています。</p>
+
+    <!-- A. LP全体戦略 -->
+    <h2>A. LP全体戦略</h2>
+    <table>
+        <tbody>
+            <tr>
+                <th>最も伝えるべきこと</th>
+                <td>「あなたの日常の気づきが、小松の未来を動かす第一歩になる」という事実。</td>
+            </tr>
+            <tr>
+                <th>メインターゲット</th>
+                <td>小松の将来に関心はあるが「私なんかが意見を言っていいのか」「忙しい」と感じている市民・働く人・若者・子育て世代。</td>
+            </tr>
+            <tr>
+                <th>参加を妨げるハードル</th>
+                <td>①専門知識や肩書きがないことへの引け目<br>②「会議」という言葉から受ける堅苦しさ・結論が出ない徒労感<br>③指定日時に参加できない物理的制約</td>
+            </tr>
+            <tr>
+                <th>ハードルの解消方法</th>
+                <td>①「専門知識不要」「日常の気づきでOK」を明記<br>②集まった意見が「どう活かされるか」のプロセスを透明化（図解）<br>③「3分意見投稿」を用意し、非参加者もプロジェクトの当事者にする</td>
+            </tr>
+            <tr>
+                <th>CTA（行動喚起）</th>
+                <td><strong>【メインCTA】</strong> 風会議への参加申込（当日参加できる人向け）<br><strong>【サブCTA】</strong> 3分意見投稿（当日不参加・まずは意見だけ言いたい人向け）</td>
+            </tr>
+            <tr>
+                <th>ストーリー設計</th>
+                <td>共感（私たちの日々の暮らし）→ 課題提起（もっと良くするには？）→ 解決策（風会議という対話の場）→ 信頼（声が活きる仕組み）→ 行動（参加 or 意見投稿）の順で視線を誘導する。</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- B. ファーストビュー設計 -->
+    <h2>B. ファーストビュー（FV）設計</h2>
+    <h3>コピー案</h3>
+    <table>
+        <tr>
+            <th>種別</th>
+            <th>案（1〜3）</th>
+        </tr>
+        <tr>
+            <td rowspan="3"><strong>メインコピー</strong></td>
+            <td>1. <strong>こまつの声を、次の一歩へ。</strong>（※最重要メッセージ）</td>
+        </tr>
+        <tr>
+            <td>2. <strong>話そう。これからの、こまつのこと。</strong></td>
+        </tr>
+        <tr>
+            <td>3. <strong>あなたの「気づき」が、こまつの未来を動かす。</strong></td>
+        </tr>
+        <tr>
+            <td rowspan="3"><strong>サブコピー</strong></td>
+            <td>1. 暮らし、仕事、子育て。一人ひとりの思いを持ち寄り、立場を越えて対話する「風会議」。</td>
+        </tr>
+        <tr>
+            <td>2. 専門知識も肩書きもいりません。必要なのは、小松で暮らす・働くあなたのリアルな声です。</td>
+        </tr>
+        <tr>
+            <td>3. 当日参加できなくても大丈夫。3分の意見投稿から、地域づくりに参加しませんか？</td>
+        </tr>
+    </table>
+
+    <h3>UI・レイアウト・デザイン指示</h3>
+    <ul>
+        <li><strong>開催情報の見せ方:</strong> メインコピーの直下にバッジデザインで視認性高く配置。「【開催日】 ｜ 会場：【会場名】 ｜ 定員：【定員】名」</li>
+        <li><strong>メインCTA文言:</strong> <code>風会議に参加する（無料）</code>（※目立つメインカラー）</li>
+        <li><strong>サブCTA文言:</strong> <code>3分で完了！意見だけ投稿する</code>（※メインと差別化したアウトラインor別カラー）</li>
+        <li><strong>ビジュアル案:</strong> 小松の日常を感じさせる写真のモンタージュ。子育て中の親子、駅前を歩く高校生、地元商店の人など、多様な「人」の笑顔や真剣な表情を切り取る。（※海外素材や抽象的すぎる未来都市CGは絶対NG）</li>
+        <li><strong>PCレイアウト:</strong> 左側にコピー・開催情報・CTAボタン。右側にビジュアルを配置するZ型視線誘導。余白を広めにとり、圧迫感をなくす。</li>
+        <li><strong>スマホ表示優先順位:</strong> ①ビジュアル（画面上部に帯状など） → ②メインコピー → ③サブコピー → ④開催情報 → ⑤CTAボタン（参加申込を上、意見投稿を下）。ボタンは画面幅いっぱいのタップしやすいサイズに。</li>
+    </ul>
+
+    <!-- C. LPセクション構成 -->
+    <h2>C. LPセクション構成</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>順</th>
+                <th>セクション名</th>
+                <th>目的</th>
+                <th>見出しコピー</th>
+                <th>本文コピー案・入れるべき要素</th>
+                <th>デザイン・UI指示 / CTA</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>ヘッダー</td>
+                <td>常時ナビゲーション</td>
+                <td>-</td>
+                <td>ロゴ（風会議 in こまつ）、ナビゲーションメニュー</td>
+                <td>右上に「参加申込」「意見投稿」の小型ボタンを追従（Sticky）</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>FV (Hero)</td>
+                <td>離脱防止・直感的な理解</td>
+                <td>こまつの声を、次の一歩へ。</td>
+                <td>B項のサブコピー、開催概要（日時・場所）</td>
+                <td>PC: 左右分割 / SP: 縦積み。<br><strong>CTA:</strong> 参加申込 ＆ 意見投稿</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>風会議とは</td>
+                <td>コンセプトの共感</td>
+                <td>肩書きを外し、小松の未来を語り合う場。</td>
+                <td>地域に暮らす人、働く人、学生など、誰もがフラットに意見を出し合う対話の場です。「単なる不満」で終わらせず、次への行動を生み出します。</td>
+                <td>温かみのある対話風景の写真（イメージ）。背景は薄いグレー等で区切る。</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>参加対象者</td>
+                <td>「自分ごと」化</td>
+                <td>こんな方の参加を待っています。</td>
+                <td>・小松で暮らし、働く方<br>・子育てや教育に関心がある方<br>・地域の未来を考えたい学生や若手社会人<br>※専門知識や会議の経験は一切不要です。</td>
+                <td>ターゲットごとに親しみやすいアイコン付きの箇条書き（カードUI）。</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>今回のテーマ</td>
+                <td>議論の具体化</td>
+                <td>あなたが話したいテーマはどれですか？</td>
+                <td>（D項の3テーマを掲載）</td>
+                <td>3つの横並びカード（SPは縦積み）。各テーマに直感的なイラストを添える。</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>声が活きる<br>仕組み</td>
+                <td>信頼感・納得感の醸成</td>
+                <td>あなたの声は、こうして「次の一歩」に変わります。</td>
+                <td>意見が出っぱなしになりません。集まった声は整理され、当日の対話を経て、具体的な提言や行動へとつながります。（E項の図解）</td>
+                <td>ステップ順の図解（矢印で視線誘導）。AI活用についてもここで触れる。</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>当日の流れ</td>
+                <td>参加不安の払拭</td>
+                <td>当日のプログラム（予定）</td>
+                <td>オープニング → グループ対話（テーマ別） → アイデアの共有 → クロージング（※進行状況により変更あり）</td>
+                <td>タイムライン（時間軸）に沿ったシンプルなUI。</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>開催概要</td>
+                <td>情報の最終確認</td>
+                <td>開催概要</td>
+                <td>日時、会場、定員、参加費、主催・後援情報、アクセスMAP</td>
+                <td>表形式でスッキリ見せる。Google Mapsの埋め込み。</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>フォーム<br>（2導線）</td>
+                <td>コンバージョン</td>
+                <td>あなたに合った方法で、ご参加ください。</td>
+                <td>（F項の2つのフォームを配置、または別ページへのリンク）</td>
+                <td>左/上で「意見投稿」、右/下で「参加申込」と視覚的にブロックを分ける。</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>FAQ</td>
+                <td>直前の迷い解消</td>
+                <td>よくあるご質問</td>
+                <td>（G項の8問をアコーディオン形式で掲載）</td>
+                <td>Q&A形式のアコーディオンUI（＋と－で開閉）。</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>最終CTA</td>
+                <td>最後の後押し</td>
+                <td>こまつの未来をつくるのは、あなたの声です。</td>
+                <td>当日お会いできるのを、楽しみにしています。意見のみの参加も大歓迎です。</td>
+                <td>FVのメイン画像を背景に敷き、大きく2つのボタンを配置。</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- D. 今回のテーマ設計 -->
+    <h2>D. 今回のテーマ設計</h2>
+    <p>日常と地続きでありながら、未来志向で対話できる3テーマに絞りました。</p>
+    <table>
+        <thead>
+            <tr>
+                <th>テーマ名</th>
+                <th>一言説明</th>
+                <th>対話で使う問い（例）</th>
+                <th>参加者が話しやすい具体例</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>1. 暮らす・育てる</strong></td>
+                <td>小松での心地よい暮らしと、子育て環境を考える</td>
+                <td>「小松でのびのび子育てし、心地よく暮らすために、今何が必要ですか？」</td>
+                <td>休日の遊び場、公園の使い勝手、ご近所づきあい、買い物環境、医療や教育への期待など</td>
+            </tr>
+            <tr>
+                <td><strong>2. 働く・挑戦する</strong></td>
+                <td>小松での働きがいと、新しいチャレンジを生み出す</td>
+                <td>「小松で楽しく働き、新しい挑戦を応援できる街にするにはどうすればいいですか？」</td>
+                <td>テレワーク環境、地元企業の魅力、起業や副業のしやすさ、学生のインターンシップなど</td>
+            </tr>
+            <tr>
+                <td><strong>3. つながる・動かす</strong></td>
+                <td>世代や立場を越えて、小松をもっと面白くする</td>
+                <td>「肩書きを外して、世代を越えてつながるためには、どんな場や仕組みがほしいですか？」</td>
+                <td>気軽な交流イベント、空き家の活用、趣味のコミュニティ、お祭りや地域行事のアップデートなど</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- E. 「声が活きる仕組み」の図解設計 -->
+    <h2>E. 「声が活きる仕組み」の図解設計</h2>
+    <p>LP中盤（セクション6）に配置する、意見が行動に変わるプロセスの図解案です。</p>
+    <div class="flow-diagram">
+        <div class="flow-step">
+            <div style="font-size:2em; margin-bottom:10px;">💬</div>
+            <strong>①声を届ける</strong>
+            <div style="font-size:0.8em; margin-top:5px;">フォームや当日の場で、あなたの率直な意見・気づきを出します。</div>
+        </div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-step">
+            <div style="font-size:2em; margin-bottom:10px;">🤖+🧑‍💻</div>
+            <strong>②意見を整理する</strong>
+            <div style="font-size:0.8em; margin-top:5px;">AIの補助を活用し、集まった大量の声を素早くテーマごとに分類・可視化します。</div>
+        </div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-step">
+            <div style="font-size:2em; margin-bottom:10px;">🤝</div>
+            <strong>③対話する</strong>
+            <div style="font-size:0.8em; margin-top:5px;">整理された声を起点に、参加者同士で「どうすれば実現できるか」を話し合います。</div>
+        </div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-step">
+            <div style="font-size:2em; margin-bottom:10px;">💡</div>
+            <strong>④提言・アイデアにする</strong>
+            <div style="font-size:0.8em; margin-top:5px;">人の力で議論を深め、小松の未来に向けた具体的なアイデアや提言にまとめます。</div>
+        </div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-step">
+            <div style="font-size:2em; margin-bottom:10px;">🚀</div>
+            <strong>⑤次の行動へつなげる</strong>
+            <div style="font-size:0.8em; margin-top:5px;">行政の施策への反映や、市民・事業者による新しいプロジェクトの立ち上げへ繋ぎます。</div>
+        </div>
     </div>
-  </header>
 
-  <main>
-    <!-- First View / Hero -->
-    <section class="hero">
-      <!-- 推奨写真内容：小松市の秋祭りの夜景、ライトアップされたあんどんやキリコ、熱気あふれる踊りを楽しむ日本人の様子 -->
-      <img src="IMAGE_URL_01" alt="第４９回小松市どんどんまつりの熱気あふれる夜の風景" class="hero-bg" fetchpriority="high">
-      
-      <div class="container">
-        <div class="hero-content">
-          <span class="hero-target">家族連れ、美味しいもの好き、地元カルチャーやダンス・祭りの熱気を感じたい方へ</span>
-          <h1 class="hero-title">【祭り名】<br>第４９回小松市どんどんまつり</h1>
-          <p class="hero-catch">【キャッチコピー】<br>小松の秋を彩る、熱気と光のサマー＆オータムカーニバル！</p>
-          
-          <div class="hero-info">
-            <div class="hero-info-item">
-              <svg class="hero-info-icon" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
-              <div>
-                <strong>【開催日時】</strong><br>
-                令和7年（2025年）10月11日（土）～10月12日（日）の2日間
-              </div>
-            </div>
-            <div class="hero-info-item">
-              <svg class="hero-info-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-              <div>
-                <strong>【開催場所】</strong><br>
-                小松駅周辺（駅前れんが花道通り、小松駅前市民公園 など）
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <a href="#contact" class="btn btn-accent">お問い合わせ・お申し込みはこちら</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section">
-      <div class="container">
-        <h2 class="section-title">【祭りの特徴・歴史】</h2>
-        <div class="about-grid">
-          <div class="about-text">
-            <p>49回目を迎える小松市の秋の代表的な一大イベント。市民が一体となって盛り上がる「どんどん小松輪踊り」をはじめ、近年では光の演出や新たなダンスコンテスト、被災地復興支援を兼ねた伝統芸能の運行など、時代に合わせて進化し続けている地域密着型のお祭りです。</p>
-          </div>
-          <div class="about-image">
-            <!-- 推奨写真内容：市民が笑顔で輪になって踊る「どんどん小松輪踊り」の様子や伝統的な祭りの風景 -->
-            <img src="IMAGE_URL_02" alt="市民が一体となって盛り上がるどんどん小松輪踊り" loading="lazy">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Events Section -->
-    <section id="events" class="section section-bg">
-      <div class="container">
-        <h2 class="section-title">【主な出し物・イベント内容】</h2>
-        <div class="event-grid">
-          
-          <article class="event-card">
-            <div class="event-img-wrap">
-              <!-- 推奨写真内容：れんが花道通りに並ぶ、小学生のメッセージが描かれた幻想的な小型あんどん -->
-              <img src="IMAGE_URL_03" alt="あんどん小径・大型あんどん展示" class="event-img" loading="lazy">
-            </div>
-            <div class="event-body">
-              <h3 class="event-title">あんどん小径・大型あんどん展示</h3>
-              <p class="event-desc">市内小学生のメッセージが書かれた約300個の小型あんどん等が「れんが花道通り」を幻想的に彩ります。</p>
-            </div>
-          </article>
-
-          <article class="event-card">
-            <div class="event-img-wrap">
-              <!-- 推奨写真内容：能登の熱気を感じさせる、大迫力の輪島キリコが夜の街を練り歩く様子 -->
-              <img src="IMAGE_URL_04" alt="輪島キリコの展示・運行" class="event-img" loading="lazy">
-            </div>
-            <div class="event-body">
-              <h3 class="event-title">輪島キリコの展示・運行</h3>
-              <p class="event-desc">能登の熱気を感じる大迫力のキリコが会場を練り歩きます。</p>
-            </div>
-          </article>
-
-          <article class="event-card">
-            <div class="event-img-wrap">
-              <!-- 推奨写真内容：屋外特設ステージでエネルギッシュにパフォーマンスするダンスチーム -->
-              <img src="IMAGE_URL_05" alt="ダンスコンテスト＆ステージパフォーマンス" class="event-img" loading="lazy">
-            </div>
-            <div class="event-body">
-              <h3 class="event-title">ダンスコンテスト＆ステージパフォーマンス</h3>
-              <p class="event-desc">エネルギッシュなダンスチームが集結する新企画や多彩なステージ。</p>
-            </div>
-          </article>
-
-          <article class="event-card">
-            <div class="event-img-wrap">
-              <!-- 推奨写真内容：こまつピザなど地元の美味しいグルメが並ぶ賑やかな屋台・飲食ブースの風景 -->
-              <img src="IMAGE_URL_06" alt="小松YEGグルメブース（グルメ横丁）" class="event-img" loading="lazy">
-            </div>
-            <div class="event-body">
-              <h3 class="event-title">小松YEGグルメブース（グルメ横丁）</h3>
-              <p class="event-desc">小松の食材を使った「こまつピザ」など、美味しい地元グルメが大集合。</p>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Mid CTA Section -->
-    <section class="section mid-cta">
-      <div class="container">
-        <h2 class="mid-cta-title">熱気と光のカーニバルを、現地で体感しよう！</h2>
-        <p style="margin-bottom: var(--space-md); font-size: 1.125rem;">ご家族・ご友人をお誘い合わせの上、ぜひ小松駅前へお越しください。</p>
-        <a href="#contact" class="btn btn-accent">お問い合わせ・お申し込みはこちら</a>
-      </div>
-    </section>
-
-    <!-- Info / Access Section -->
-    <section id="info" class="section">
-      <div class="container">
-        <h2 class="section-title">【アクセス・駐車場】</h2>
-        <table class="info-table">
-          <tbody>
+    <!-- F. フォーム設計 -->
+    <h2>F. フォーム設計</h2>
+    
+    <h3>1. 3分意見投稿フォーム（入力負荷を極力下げる設計）</h3>
+    <table>
+        <thead>
             <tr>
-              <th>【アクセス】</th>
-              <td>JR小松駅から徒歩すぐ</td>
+                <th>項目名</th>
+                <th>必須/任意</th>
+                <th>入力形式</th>
+                <th>プレースホルダー例</th>
+                <th>補足説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>あなたの立場</td>
+                <td>必須</td>
+                <td>ラジオボタン等</td>
+                <td>市民 / 働く人 / 学生 / その他 から選択</td>
+                <td>選択肢を少なくし、迷わせない。</td>
             </tr>
             <tr>
-              <th>【料金・参加条件】</th>
-              <td>入場無料（飲食ブースや一部イベントでの購入・参加は有料）</td>
+                <td>年代</td>
+                <td>任意</td>
+                <td>ドロップダウン</td>
+                <td>選択してください（10代〜70代以上）</td>
+                <td>-</td>
             </tr>
             <tr>
-              <th>【駐車場】</th>
-              <td>
-                臨時無料駐車場あり<br>
-                （利用時間：11日 9:00〜21:00 / 12日 9:00〜18:00）
-                <ul class="parking-list">
-                  <li>コマツウェイ総合研修センタ北側用地（こまつの杜北側）</li>
-                  <li>小松商工会議所駐車場</li>
-                  <li>小松市役所駐車場 など</li>
-                </ul>
-              </td>
+                <td>小松で良いと思うこと</td>
+                <td>任意</td>
+                <td>テキストエリア</td>
+                <td>例：自然が豊かで食べ物が美味しいところ</td>
+                <td>ポジティブな意見を引き出す。</td>
             </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+            <tr>
+                <td>小松で変わると良いと思うこと</td>
+                <td>必須</td>
+                <td>テキストエリア</td>
+                <td>例：若者が気軽に集まれるカフェや作業スペースがもっとほしい</td>
+                <td>このフォームのコアとなる意見。</td>
+            </tr>
+            <tr>
+                <td>話してみたいテーマ</td>
+                <td>任意</td>
+                <td>チェックボックス</td>
+                <td>（D項の3テーマを配置）複数選択可</td>
+                <td>関心領域のデータ収集用。</td>
+            </tr>
+            <tr>
+                <td>当日参加希望</td>
+                <td>必須</td>
+                <td>ラジオボタン</td>
+                <td>参加を希望する / 今回は意見投稿のみ</td>
+                <td>「希望する」を選んだ場合、下の参加申込フォームへJS等でスクロール誘導（※LP実装時）。</td>
+            </tr>
+            <tr>
+                <td>メールアドレス</td>
+                <td>任意</td>
+                <td>テキスト入力</td>
+                <td>info@example.com</td>
+                <td>結果報告などを希望する人のみ。</td>
+            </tr>
+            <tr>
+                <td>匿名公開可否</td>
+                <td>必須</td>
+                <td>ラジオボタン</td>
+                <td>匿名での公開に同意する / 同意しない</td>
+                <td>意見がLPや会場で紹介される可能性を示唆。</td>
+            </tr>
+            <tr>
+                <td>個人情報の取扱い同意</td>
+                <td>必須</td>
+                <td>チェックボックス</td>
+                <td>個人情報の取扱いに同意する</td>
+                <td>プライバシーポリシーへのリンクを併記。</td>
+            </tr>
+        </tbody>
+    </table>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="section section-bg">
-      <div class="container">
-        <h2 class="section-title">よくある質問</h2>
-        <div class="faq-container">
-          
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false" aria-controls="faq1">
-              雨天の場合は開催されますか？
-              <svg class="faq-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-            </button>
-            <div id="faq1" class="faq-answer">
-              <div class="faq-answer-inner">
-                原則として雨天決行ですが、荒天時や安全が確保できない場合は一部のイベントや運行が中止・変更となる場合がございます。最新情報は公式WEBサイトをご確認ください。
-              </div>
-            </div>
-          </div>
+    <h3>2. 参加申込フォーム（正確な情報収集と配慮）</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>項目名</th>
+                <th>必須/任意</th>
+                <th>入力形式</th>
+                <th>プレースホルダー例</th>
+                <th>補足説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>氏名</td>
+                <td>必須</td>
+                <td>テキスト入力</td>
+                <td>小松 太郎</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>所属・会社名</td>
+                <td>任意</td>
+                <td>テキスト入力</td>
+                <td>株式会社〇〇 / 〇〇大学</td>
+                <td>学生や個人の場合は空欄でOKであることを注記。</td>
+            </tr>
+            <tr>
+                <td>役職または立場</td>
+                <td>任意</td>
+                <td>テキスト入力</td>
+                <td>会社員、学生、主婦 など</td>
+                <td>属性把握のため。</td>
+            </tr>
+            <tr>
+                <td>メールアドレス</td>
+                <td>必須</td>
+                <td>テキスト入力</td>
+                <td>info@example.com</td>
+                <td>自動返信メール送付用。</td>
+            </tr>
+            <tr>
+                <td>電話番号</td>
+                <td>必須</td>
+                <td>テキスト入力</td>
+                <td>090-XXXX-XXXX</td>
+                <td>当日緊急時の連絡用。</td>
+            </tr>
+            <tr>
+                <td>参加希望テーマ</td>
+                <td>必須</td>
+                <td>ラジオボタン</td>
+                <td>（D項の3テーマから1つ選択）</td>
+                <td>グループ分けの参考に。第2希望まで取っても可。</td>
+            </tr>
+            <tr>
+                <td>事前に共有したい意見</td>
+                <td>任意</td>
+                <td>テキストエリア</td>
+                <td>当日の対話で聞いてみたいことなどがあればご記入ください</td>
+                <td>事前の熱量を高める効果あり。</td>
+            </tr>
+            <tr>
+                <td>配慮してほしいこと</td>
+                <td>任意</td>
+                <td>テキストエリア</td>
+                <td>例：車椅子での参加です / 小さな子どもを連れて行きます</td>
+                <td>バリアフリーや託児等の運営配慮用。</td>
+            </tr>
+            <tr>
+                <td>個人情報の取扱い同意</td>
+                <td>必須</td>
+                <td>チェックボックス</td>
+                <td>個人情報の取扱いに同意する</td>
+                <td>プライバシーポリシーへのリンクを併記。</td>
+            </tr>
+        </tbody>
+    </table>
 
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false" aria-controls="faq2">
-              飲食ブースでクレジットカードや電子マネーは使えますか？
-              <svg class="faq-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-            </button>
-            <div id="faq2" class="faq-answer">
-              <div class="faq-answer-inner">
-                店舗によって対応状況が異なります。一部のブースでは現金のみの取り扱いとなる場合もございますので、あらかじめ現金のご用意をおすすめいたします。
-              </div>
-            </div>
-          </div>
+    <!-- G. FAQ設計 -->
+    <h2>G. FAQ設計</h2>
+    <p>参加者の心理的ハードルを下げる、温かみのある回答を用意します。</p>
+    <ul>
+        <li><strong>Q. 初めてでも参加できますか？</strong><br>
+        A. もちろんです！参加者の多くが、こうした対話の場には初めて参加される方です。アットホームな雰囲気で進行しますので、安心してお越しください。</li>
+        <li><strong>Q. 発言に自信がなくても大丈夫ですか？</strong><br>
+        A. 大丈夫です。上手なプレゼンを求める場ではありません。ご自身の生活の中での素直な気づきを、数言お話しいただくだけで十分な貢献になります。他の人の意見を聞くだけでも大歓迎です。</li>
+        <li><strong>Q. 一人で参加しても大丈夫ですか？</strong><br>
+        A. はい、お一人での参加も全く問題ありません。当日は少人数のグループに分かれてお話しいただくため、すぐに周囲の方と打ち解けることができます。</li>
+        <li><strong>Q. 事前に準備するものはありますか？</strong><br>
+        A. 特に準備していただく資料等はありません。「小松について思うこと」を少しだけ頭に浮かべて、リラックスしてお越しください。</li>
+        <li><strong>Q. 意見投稿だけでも参加になりますか？</strong><br>
+        A. 立派な参加です！当日お越しいただけない方のご意見も、小松の未来を考える大切な材料として、当日の対話や今後のプロジェクトにしっかりと活かさせていただきます。</li>
+        <li><strong>Q. 投稿した意見はどのように使われますか？</strong><br>
+        A. 個人が特定されない形に整理した上で、当日の風会議での対話テーマや議論のヒントとして活用させていただきます。また、今後の小松市の施策や提言づくりの参考にもいたします。</li>
+        <li><strong>Q. AIはどのように使われますか？</strong><br>
+        A. 皆様からいただいた多くのご意見を「素早く整理・分類する」ための補助ツールとしてAIを使用します。AIが結論を出すわけではなく、最終的なアイデアや提言は、必ず参加者の皆様による「人の対話」を通じて決定いたします。</li>
+        <li><strong>Q. 子ども連れでも参加できますか？</strong><br>
+        A. ご参加いただけます。お申し込みの際、「配慮してほしいこと」の欄にその旨をご記入ください。（※託児スペースの有無など、実際の運営状況に合わせて追記してください）</li>
+    </ul>
 
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false" aria-controls="faq3">
-              臨時駐車場から会場までは遠いですか？
-              <svg class="faq-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-            </button>
-            <div id="faq3" class="faq-answer">
-              <div class="faq-answer-inner">
-                主要な臨時駐車場から中心会場（小松駅周辺）までは、徒歩10〜15分程度です。満車になる可能性もございますので、お早めのご来場や公共交通機関のご利用もご検討ください。
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Form Section -->
-    <section id="contact" class="section">
-      <div class="container">
-        <h2 class="section-title">お問い合わせ・お申し込み</h2>
-        <div class="form-container">
-          <form id="contactForm" novalidate>
-            
-            <div class="form-group">
-              <label for="name" class="form-label">お名前<span class="form-required">必須</span></label>
-              <input type="text" id="name" name="name" class="form-control" required placeholder="例：小松 太郎">
-              <div class="form-error-msg">お名前を入力してください。</div>
-            </div>
-
-            <div class="form-group">
-              <label for="email" class="form-label">メールアドレス<span class="form-required">必須</span></label>
-              <input type="email" id="email" name="email" class="form-control" required placeholder="例：info@example.com">
-              <div class="form-error-msg">有効なメールアドレスを入力してください。</div>
-            </div>
-
-            <div class="form-group">
-              <label for="category" class="form-label">お問い合わせ項目<span class="form-required">必須</span></label>
-              <select id="category" name="category" class="form-control" required>
-                <option value="">選択してください</option>
-                <option value="general">お祭りに関する一般的なご質問</option>
-                <option value="booth">出店・ブースに関するお問い合わせ</option>
-                <option value="event">ステージ・イベント参加について</option>
-                <option value="other">その他</option>
-              </select>
-              <div class="form-error-msg">お問い合わせ項目を選択してください。</div>
-            </div>
-
-            <div class="form-group">
-              <label for="message" class="form-label">お問い合わせ内容<span class="form-required">必須</span></label>
-              <textarea id="message" name="message" class="form-control" required placeholder="ご質問やご要望を具体的にご記入ください。"></textarea>
-              <div class="form-error-msg">お問い合わせ内容を入力してください。</div>
-            </div>
-
-            <div class="form-submit">
-              <button type="submit" class="btn btn-primary" style="width: 100%; max-width: 320px;">上記の内容で送信する</button>
-            </div>
-
-            <div id="formSuccess" class="form-success-msg" role="alert">
-              送信内容を受け付けました。担当者からの連絡をお待ちください。
-            </div>
-
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <h2 class="footer-info-title">【問い合わせ先・公式SNS】</h2>
-          <p><strong>主催：</strong> 小松市どんどんまつり実行委員会（小松商工会議内）</p>
-          <p><strong>TEL：</strong> 0761-21-3121</p>
-          <p style="margin-top: var(--space-sm);">
-            <strong>公式WEBサイト：</strong><br>
-            <a href="https://www.komatsu-dondon.com/" target="_blank" rel="noopener noreferrer" class="footer-link">https://www.komatsu-dondon.com/</a>
-          </p>
-        </div>
-        <div>
-          <h3 style="font-size: 1.1rem; margin-bottom: var(--space-sm); color: var(--color-white);">サイトマップ</h3>
-          <nav class="footer-nav" aria-label="フッターナビゲーション">
-            <a href="#about">祭りの特徴</a>
-            <a href="#events">イベント内容</a>
-            <a href="#info">アクセス・駐車場</a>
-            <a href="#faq">よくある質問</a>
-            <a href="#contact">お問い合わせ</a>
-          </nav>
-        </div>
-      </div>
-      <div class="footer-copy">
-        &copy; 2025 小松市どんどんまつり実行委員会. All Rights Reserved.
-      </div>
+    <!-- H. 信頼性を高める掲載文 -->
+    <h2>H. 信頼性を高める掲載文（プライバシー・AI利用）</h2>
+    <div class="important-note">
+        <strong>【いただいたご意見の取り扱いと、対話づくりについて】</strong><br><br>
+        皆様からお寄せいただいた貴重なご意見は、お名前などの個人が特定されないよう細心の注意を払い、当日の対話や今後の提言づくりの大切な「声」として活用させていただきます。<br><br>
+        また本プロジェクトでは、より多くの声を漏らさずスピーディーに整理するため、意見の分類・構造化の補助としてAI（人工知能）を活用しています。<br>
+        ただし、AIはあくまで「意見の整理役」です。地域の未来をどうしていくかという最終的な結論や提言は、決してAI任せにせず、参加者の皆様や関係者との「温かい対話」を通じて、じっくりと検討・決定してまいります。
     </div>
-  </footer>
 
-  <!-- 以下の <script> タグ内にJavaScriptが含まれています -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      
-      // FAQ Accordion Logic
-      const faqQuestions = document.querySelectorAll('.faq-question');
-      
-      faqQuestions.forEach(question => {
-        question.addEventListener('click', () => {
-          const isExpanded = question.getAttribute('aria-expanded') === 'true';
-          const answer = question.nextElementSibling;
-          
-          // Close all
-          document.querySelectorAll('.faq-question').forEach(q => {
-            q.setAttribute('aria-expanded', 'false');
-            q.nextElementSibling.style.maxHeight = null;
-          });
-          
-          // Toggle current
-          if (!isExpanded) {
-            question.setAttribute('aria-expanded', 'true');
-            answer.style.maxHeight = answer.scrollHeight + "px";
-          }
-        });
-      });
+    <!-- I. デザイン方針 -->
+    <h2>I. デザイン方針</h2>
+    <ul>
+        <li><strong>推奨カラー設計:</strong><br>
+        メインカラー：<code>さわやかな風を感じるブルー（例: #0078D4）</code> - 誠実さ、新しい風。<br>
+        アクセントカラー：<code>温かみのあるオレンジ（例: #FF8C00）</code> - CTAボタン等、対話の熱量や人の温もり。<br>
+        ベースカラー：<code>ライトグレー・オフホワイト</code> - 情報を邪魔しない清潔感のある背景。</li>
+        <li><strong>推奨フォント:</strong><br>
+        Webフォントのゴシック体（Noto Sans JPなど）。「行政的すぎる硬さ」を排除するため、ウェイト（太さ）でメリハリをつけ、可読性を最優先にする。</li>
+        <li><strong>写真の方向性:</strong><br>
+        小松市内の実際の風景（小松駅周辺、サイエンスヒルズ、自然風景など）を背景にぼかしつつ、そこにいる「市民（老若男女）」の自然な笑顔や真剣な表情を被写体にする。フリー素材でも日本人の日常的なものを使用し、海外素材は厳禁。</li>
+        <li><strong>イラスト・アイコンの方向性:</strong><br>
+        フラットデザインで、親しみやすい丸みを帯びたもの。アイコンは単色ではなく、2色程度（メイン＋アクセント）を使うとリッチになる。</li>
+        <li><strong>スマホUIの優先順位:</strong><br>
+        「参加する」「意見を送る」の2大アクションが、スクロール中も常に画面下部（固定フッターバー等）に表示される設計を強く推奨。タップ領域は44px以上を確保する。</li>
+        <li><strong>避けるべきデザイン:</strong><br>
+        × 官公庁の公募のような「文字ばかり・明朝体ベース・青と赤だけの強い配色」<br>
+        × サイバーすぎる「AI・未来都市」を強調したCG（人の温もりが消えるため）<br>
+        × 意識高すぎに見える「ビジネスセミナー風」の硬いレイアウト</li>
+        <li><strong>小松らしさを表現する方法:</strong><br>
+        過剰な「名産品アピール（九谷焼、建機など）」は主題がブレるため前面には出さないが、あしらいのカラーリングに九谷五彩（緑・黄・紫・紺青・赤）をさりげなく取り入れたり、写真の背景に小松らしさを忍ばせることで、地元民が無意識に「自分たちの街だ」と感じるローカライズを行う。</li>
+    </ul>
 
-      // Form Validation & Demo Submission
-      const form = document.getElementById('contactForm');
-      const successMsg = document.getElementById('formSuccess');
-      
-      const validateEmail = (email) => {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      };
+</div>
 
-      const clearError = (input) => {
-        input.classList.remove('is-error');
-      };
-
-      // Clear errors on input
-      form.querySelectorAll('.form-control').forEach(input => {
-        input.addEventListener('input', () => clearError(input));
-        input.addEventListener('change', () => clearError(input));
-      });
-
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        let isValid = true;
-        successMsg.style.display = 'none';
-
-        // Check required fields
-        form.querySelectorAll('.form-control').forEach(input => {
-          if (!input.value.trim()) {
-            input.classList.add('is-error');
-            isValid = false;
-          } else {
-            clearError(input);
-          }
-        });
-
-        // Check email format
-        const emailInput = document.getElementById('email');
-        if (emailInput.value.trim() && !validateEmail(emailInput.value.trim())) {
-          emailInput.classList.add('is-error');
-          isValid = false;
-        }
-
-        // Demo submit
-        if (isValid) {
-          successMsg.style.display = 'block';
-          form.reset();
-          
-          // Hide success message after 8 seconds
-          setTimeout(() => {
-            successMsg.style.display = 'none';
-          }, 8000);
-        }
-      });
-    });
-  </script>
 </body>
 </html>
