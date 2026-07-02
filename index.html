@@ -3,596 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>【風会議 in こまつ】LP構成案・Web戦略設計書</title>
+<title>風会議 in こまつ | こまつの声を、次の一歩へ。</title>
 <style>
-    :root {
-        --primary-color: #0078D4; /* 信頼感と「風」を感じるブルー */
-        --accent-color: #FF8C00; /* 行動を促す暖色（オレンジ） */
-        --text-main: #333333;
-        --bg-light: #F8F9FA;
-        --border-color: #DDDDDD;
-    }
-    body {
-        font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-        color: var(--text-main);
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f7f6;
-    }
-    .container {
-        max-width: 1000px;
-        margin: 20px auto;
-        background: #ffffff;
-        padding: 40px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        border-radius: 8px;
-    }
-    h1 {
-        text-align: center;
-        color: var(--primary-color);
-        border-bottom: 2px solid var(--primary-color);
-        padding-bottom: 10px;
-        margin-bottom: 40px;
-    }
-    h2 {
-        background-color: var(--primary-color);
-        color: #ffffff;
-        padding: 10px 15px;
-        border-radius: 4px;
-        margin-top: 40px;
-    }
-    h3 {
-        color: var(--primary-color);
-        border-left: 4px solid var(--primary-color);
-        padding-left: 10px;
-        margin-top: 30px;
-    }
-    p {
-        margin-bottom: 15px;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-        font-size: 0.95em;
-    }
-    th, td {
-        border: 1px solid var(--border-color);
-        padding: 12px;
-        text-align: left;
-    }
-    th {
-        background-color: var(--bg-light);
-        font-weight: bold;
-        white-space: nowrap;
-    }
-    .cta-box {
-        background-color: #fff3e0;
-        border-left: 4px solid var(--accent-color);
-        padding: 15px;
-        margin: 15px 0;
-    }
-    .important-note {
-        background-color: #e3f2fd;
-        padding: 15px;
-        border-radius: 4px;
-        font-weight: bold;
-    }
-    .flow-diagram {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: var(--bg-light);
-        padding: 20px;
-        border-radius: 8px;
-        text-align: center;
-        flex-wrap: wrap;
-    }
-    .flow-step {
-        flex: 1;
-        min-width: 120px;
-        margin: 10px;
-    }
-    .flow-arrow {
-        color: var(--primary-color);
-        font-size: 1.5em;
-        font-weight: bold;
-    }
-    ul, ol {
-        margin-bottom: 15px;
-        padding-left: 20px;
-    }
-    @media (max-width: 768px) {
-        .container {
-            padding: 20px;
-        }
-        .flow-diagram {
-            flex-direction: column;
-        }
-        .flow-arrow {
-            transform: rotate(90deg);
-            margin: 10px 0;
-        }
-        table, thead, tbody, th, td, tr {
-            display: block;
-        }
-        th {
-            background-color: var(--primary-color);
-            color: white;
-            margin-top: 10px;
-        }
-        td {
-            border-top: none;
-        }
-    }
+:root {
+  --color-base: #FFFFFF;
+  --color-bg-light: #F7F9FA;
+  --color-main: #123A5A;
+  --color-accent: #2B8C8C;
+  --color-accent-hover: #227070;
+  --color-sub: #F5B942;
+  --color-text: #1F2933;
+  --color-text-light: #606F7B;
+  --color-border: #E4E7EB;
+  --color-error: #E74C3C;
+  --color-success: #2ECC71;
+  
+  --font-base: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+  
+  --transition: all 0.3s ease;
+  
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 32px;
+  --space-lg: 64px;
+  --space-xl: 96px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-base);
+  color: var(--color-text);
+  background-color: var(--color-base);
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+a { text-decoration: none; color: inherit; transition: var(--transition); }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+h1, h2, h3 { color: var(--color-main); font-weight: bold; }
+.container { max-width: 1000px; margin: 0 auto; padding: 0 var(--space-md); }
+section { padding: var(--space-xl) 0; }
+.bg-light { background-color: var(--color-bg-light); }
+
+header {
+  position: fixed; top: 0; width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  border-bottom: 1px solid var(--color-border);
+  height: 72px;
+}
+.header-inner { display: flex; justify-content: space-between; align-items: center; height: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--space-md); }
+
+.btn { display: inline-flex; align-items: center; padding: 16px 32px; border-radius: var(--radius-full); font-weight: bold; background-color: var(--color-accent); color: var(--color-base); }
+
+/* 簡易フォームスタイル */
+.form-container { background: var(--color-base); padding: var(--space-lg); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+.form-group { margin-bottom: var(--space-md); }
+input, textarea, select { width: 100%; padding: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
 </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>【風会議 in こまつ】LP構成案・Web戦略設計書</h1>
-    <p>ご提示いただいた要件に基づき、地域プロジェクト専門の視点から、小松市の「風会議」ランディングページ（LP）の構成案と戦略を設計しました。実制作（デザイン・コーディング）へスムーズに移行できるよう、具体度を高く設定しています。</p>
+<header>
+  <div class="header-inner">
+    <div class="logo">風会議 in こまつ</div>
+  </div>
+</header>
 
-    <!-- A. LP全体戦略 -->
-    <h2>A. LP全体戦略</h2>
-    <table>
-        <tbody>
-            <tr>
-                <th>最も伝えるべきこと</th>
-                <td>「あなたの日常の気づきが、小松の未来を動かす第一歩になる」という事実。</td>
-            </tr>
-            <tr>
-                <th>メインターゲット</th>
-                <td>小松の将来に関心はあるが「私なんかが意見を言っていいのか」「忙しい」と感じている市民・働く人・若者・子育て世代。</td>
-            </tr>
-            <tr>
-                <th>参加を妨げるハードル</th>
-                <td>①専門知識や肩書きがないことへの引け目<br>②「会議」という言葉から受ける堅苦しさ・結論が出ない徒労感<br>③指定日時に参加できない物理的制約</td>
-            </tr>
-            <tr>
-                <th>ハードルの解消方法</th>
-                <td>①「専門知識不要」「日常の気づきでOK」を明記<br>②集まった意見が「どう活かされるか」のプロセスを透明化（図解）<br>③「3分意見投稿」を用意し、非参加者もプロジェクトの当事者にする</td>
-            </tr>
-            <tr>
-                <th>CTA（行動喚起）</th>
-                <td><strong>【メインCTA】</strong> 風会議への参加申込（当日参加できる人向け）<br><strong>【サブCTA】</strong> 3分意見投稿（当日不参加・まずは意見だけ言いたい人向け）</td>
-            </tr>
-            <tr>
-                <th>ストーリー設計</th>
-                <td>共感（私たちの日々の暮らし）→ 課題提起（もっと良くするには？）→ 解決策（風会議という対話の場）→ 信頼（声が活きる仕組み）→ 行動（参加 or 意見投稿）の順で視線を誘導する。</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- B. ファーストビュー設計 -->
-    <h2>B. ファーストビュー（FV）設計</h2>
-    <h3>コピー案</h3>
-    <table>
-        <tr>
-            <th>種別</th>
-            <th>案（1〜3）</th>
-        </tr>
-        <tr>
-            <td rowspan="3"><strong>メインコピー</strong></td>
-            <td>1. <strong>こまつの声を、次の一歩へ。</strong>（※最重要メッセージ）</td>
-        </tr>
-        <tr>
-            <td>2. <strong>話そう。これからの、こまつのこと。</strong></td>
-        </tr>
-        <tr>
-            <td>3. <strong>あなたの「気づき」が、こまつの未来を動かす。</strong></td>
-        </tr>
-        <tr>
-            <td rowspan="3"><strong>サブコピー</strong></td>
-            <td>1. 暮らし、仕事、子育て。一人ひとりの思いを持ち寄り、立場を越えて対話する「風会議」。</td>
-        </tr>
-        <tr>
-            <td>2. 専門知識も肩書きもいりません。必要なのは、小松で暮らす・働くあなたのリアルな声です。</td>
-        </tr>
-        <tr>
-            <td>3. 当日参加できなくても大丈夫。3分の意見投稿から、地域づくりに参加しませんか？</td>
-        </tr>
-    </table>
-
-    <h3>UI・レイアウト・デザイン指示</h3>
-    <ul>
-        <li><strong>開催情報の見せ方:</strong> メインコピーの直下にバッジデザインで視認性高く配置。「【開催日】 ｜ 会場：【会場名】 ｜ 定員：【定員】名」</li>
-        <li><strong>メインCTA文言:</strong> <code>風会議に参加する（無料）</code>（※目立つメインカラー）</li>
-        <li><strong>サブCTA文言:</strong> <code>3分で完了！意見だけ投稿する</code>（※メインと差別化したアウトラインor別カラー）</li>
-        <li><strong>ビジュアル案:</strong> 小松の日常を感じさせる写真のモンタージュ。子育て中の親子、駅前を歩く高校生、地元商店の人など、多様な「人」の笑顔や真剣な表情を切り取る。（※海外素材や抽象的すぎる未来都市CGは絶対NG）</li>
-        <li><strong>PCレイアウト:</strong> 左側にコピー・開催情報・CTAボタン。右側にビジュアルを配置するZ型視線誘導。余白を広めにとり、圧迫感をなくす。</li>
-        <li><strong>スマホ表示優先順位:</strong> ①ビジュアル（画面上部に帯状など） → ②メインコピー → ③サブコピー → ④開催情報 → ⑤CTAボタン（参加申込を上、意見投稿を下）。ボタンは画面幅いっぱいのタップしやすいサイズに。</li>
-    </ul>
-
-    <!-- C. LPセクション構成 -->
-    <h2>C. LPセクション構成</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>順</th>
-                <th>セクション名</th>
-                <th>目的</th>
-                <th>見出しコピー</th>
-                <th>本文コピー案・入れるべき要素</th>
-                <th>デザイン・UI指示 / CTA</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>ヘッダー</td>
-                <td>常時ナビゲーション</td>
-                <td>-</td>
-                <td>ロゴ（風会議 in こまつ）、ナビゲーションメニュー</td>
-                <td>右上に「参加申込」「意見投稿」の小型ボタンを追従（Sticky）</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>FV (Hero)</td>
-                <td>離脱防止・直感的な理解</td>
-                <td>こまつの声を、次の一歩へ。</td>
-                <td>B項のサブコピー、開催概要（日時・場所）</td>
-                <td>PC: 左右分割 / SP: 縦積み。<br><strong>CTA:</strong> 参加申込 ＆ 意見投稿</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>風会議とは</td>
-                <td>コンセプトの共感</td>
-                <td>肩書きを外し、小松の未来を語り合う場。</td>
-                <td>地域に暮らす人、働く人、学生など、誰もがフラットに意見を出し合う対話の場です。「単なる不満」で終わらせず、次への行動を生み出します。</td>
-                <td>温かみのある対話風景の写真（イメージ）。背景は薄いグレー等で区切る。</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>参加対象者</td>
-                <td>「自分ごと」化</td>
-                <td>こんな方の参加を待っています。</td>
-                <td>・小松で暮らし、働く方<br>・子育てや教育に関心がある方<br>・地域の未来を考えたい学生や若手社会人<br>※専門知識や会議の経験は一切不要です。</td>
-                <td>ターゲットごとに親しみやすいアイコン付きの箇条書き（カードUI）。</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>今回のテーマ</td>
-                <td>議論の具体化</td>
-                <td>あなたが話したいテーマはどれですか？</td>
-                <td>（D項の3テーマを掲載）</td>
-                <td>3つの横並びカード（SPは縦積み）。各テーマに直感的なイラストを添える。</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>声が活きる<br>仕組み</td>
-                <td>信頼感・納得感の醸成</td>
-                <td>あなたの声は、こうして「次の一歩」に変わります。</td>
-                <td>意見が出っぱなしになりません。集まった声は整理され、当日の対話を経て、具体的な提言や行動へとつながります。（E項の図解）</td>
-                <td>ステップ順の図解（矢印で視線誘導）。AI活用についてもここで触れる。</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>当日の流れ</td>
-                <td>参加不安の払拭</td>
-                <td>当日のプログラム（予定）</td>
-                <td>オープニング → グループ対話（テーマ別） → アイデアの共有 → クロージング（※進行状況により変更あり）</td>
-                <td>タイムライン（時間軸）に沿ったシンプルなUI。</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>開催概要</td>
-                <td>情報の最終確認</td>
-                <td>開催概要</td>
-                <td>日時、会場、定員、参加費、主催・後援情報、アクセスMAP</td>
-                <td>表形式でスッキリ見せる。Google Mapsの埋め込み。</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>フォーム<br>（2導線）</td>
-                <td>コンバージョン</td>
-                <td>あなたに合った方法で、ご参加ください。</td>
-                <td>（F項の2つのフォームを配置、または別ページへのリンク）</td>
-                <td>左/上で「意見投稿」、右/下で「参加申込」と視覚的にブロックを分ける。</td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>FAQ</td>
-                <td>直前の迷い解消</td>
-                <td>よくあるご質問</td>
-                <td>（G項の8問をアコーディオン形式で掲載）</td>
-                <td>Q&A形式のアコーディオンUI（＋と－で開閉）。</td>
-            </tr>
-            <tr>
-                <td>11</td>
-                <td>最終CTA</td>
-                <td>最後の後押し</td>
-                <td>こまつの未来をつくるのは、あなたの声です。</td>
-                <td>当日お会いできるのを、楽しみにしています。意見のみの参加も大歓迎です。</td>
-                <td>FVのメイン画像を背景に敷き、大きく2つのボタンを配置。</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- D. 今回のテーマ設計 -->
-    <h2>D. 今回のテーマ設計</h2>
-    <p>日常と地続きでありながら、未来志向で対話できる3テーマに絞りました。</p>
-    <table>
-        <thead>
-            <tr>
-                <th>テーマ名</th>
-                <th>一言説明</th>
-                <th>対話で使う問い（例）</th>
-                <th>参加者が話しやすい具体例</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>1. 暮らす・育てる</strong></td>
-                <td>小松での心地よい暮らしと、子育て環境を考える</td>
-                <td>「小松でのびのび子育てし、心地よく暮らすために、今何が必要ですか？」</td>
-                <td>休日の遊び場、公園の使い勝手、ご近所づきあい、買い物環境、医療や教育への期待など</td>
-            </tr>
-            <tr>
-                <td><strong>2. 働く・挑戦する</strong></td>
-                <td>小松での働きがいと、新しいチャレンジを生み出す</td>
-                <td>「小松で楽しく働き、新しい挑戦を応援できる街にするにはどうすればいいですか？」</td>
-                <td>テレワーク環境、地元企業の魅力、起業や副業のしやすさ、学生のインターンシップなど</td>
-            </tr>
-            <tr>
-                <td><strong>3. つながる・動かす</strong></td>
-                <td>世代や立場を越えて、小松をもっと面白くする</td>
-                <td>「肩書きを外して、世代を越えてつながるためには、どんな場や仕組みがほしいですか？」</td>
-                <td>気軽な交流イベント、空き家の活用、趣味のコミュニティ、お祭りや地域行事のアップデートなど</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- E. 「声が活きる仕組み」の図解設計 -->
-    <h2>E. 「声が活きる仕組み」の図解設計</h2>
-    <p>LP中盤（セクション6）に配置する、意見が行動に変わるプロセスの図解案です。</p>
-    <div class="flow-diagram">
-        <div class="flow-step">
-            <div style="font-size:2em; margin-bottom:10px;">💬</div>
-            <strong>①声を届ける</strong>
-            <div style="font-size:0.8em; margin-top:5px;">フォームや当日の場で、あなたの率直な意見・気づきを出します。</div>
-        </div>
-        <div class="flow-arrow">➔</div>
-        <div class="flow-step">
-            <div style="font-size:2em; margin-bottom:10px;">🤖+🧑‍💻</div>
-            <strong>②意見を整理する</strong>
-            <div style="font-size:0.8em; margin-top:5px;">AIの補助を活用し、集まった大量の声を素早くテーマごとに分類・可視化します。</div>
-        </div>
-        <div class="flow-arrow">➔</div>
-        <div class="flow-step">
-            <div style="font-size:2em; margin-bottom:10px;">🤝</div>
-            <strong>③対話する</strong>
-            <div style="font-size:0.8em; margin-top:5px;">整理された声を起点に、参加者同士で「どうすれば実現できるか」を話し合います。</div>
-        </div>
-        <div class="flow-arrow">➔</div>
-        <div class="flow-step">
-            <div style="font-size:2em; margin-bottom:10px;">💡</div>
-            <strong>④提言・アイデアにする</strong>
-            <div style="font-size:0.8em; margin-top:5px;">人の力で議論を深め、小松の未来に向けた具体的なアイデアや提言にまとめます。</div>
-        </div>
-        <div class="flow-arrow">➔</div>
-        <div class="flow-step">
-            <div style="font-size:2em; margin-bottom:10px;">🚀</div>
-            <strong>⑤次の行動へつなげる</strong>
-            <div style="font-size:0.8em; margin-top:5px;">行政の施策への反映や、市民・事業者による新しいプロジェクトの立ち上げへ繋ぎます。</div>
-        </div>
+<main style="margin-top: 72px;">
+  <section>
+    <div class="container">
+      <h1>こまつの声を、次の一歩へ。</h1>
+      <p>小松で暮らし、働き、学ぶ中で感じていることを聞かせてください。</p>
     </div>
+  </section>
 
-    <!-- F. フォーム設計 -->
-    <h2>F. フォーム設計</h2>
-    
-    <h3>1. 3分意見投稿フォーム（入力負荷を極力下げる設計）</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>項目名</th>
-                <th>必須/任意</th>
-                <th>入力形式</th>
-                <th>プレースホルダー例</th>
-                <th>補足説明</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>あなたの立場</td>
-                <td>必須</td>
-                <td>ラジオボタン等</td>
-                <td>市民 / 働く人 / 学生 / その他 から選択</td>
-                <td>選択肢を少なくし、迷わせない。</td>
-            </tr>
-            <tr>
-                <td>年代</td>
-                <td>任意</td>
-                <td>ドロップダウン</td>
-                <td>選択してください（10代〜70代以上）</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>小松で良いと思うこと</td>
-                <td>任意</td>
-                <td>テキストエリア</td>
-                <td>例：自然が豊かで食べ物が美味しいところ</td>
-                <td>ポジティブな意見を引き出す。</td>
-            </tr>
-            <tr>
-                <td>小松で変わると良いと思うこと</td>
-                <td>必須</td>
-                <td>テキストエリア</td>
-                <td>例：若者が気軽に集まれるカフェや作業スペースがもっとほしい</td>
-                <td>このフォームのコアとなる意見。</td>
-            </tr>
-            <tr>
-                <td>話してみたいテーマ</td>
-                <td>任意</td>
-                <td>チェックボックス</td>
-                <td>（D項の3テーマを配置）複数選択可</td>
-                <td>関心領域のデータ収集用。</td>
-            </tr>
-            <tr>
-                <td>当日参加希望</td>
-                <td>必須</td>
-                <td>ラジオボタン</td>
-                <td>参加を希望する / 今回は意見投稿のみ</td>
-                <td>「希望する」を選んだ場合、下の参加申込フォームへJS等でスクロール誘導（※LP実装時）。</td>
-            </tr>
-            <tr>
-                <td>メールアドレス</td>
-                <td>任意</td>
-                <td>テキスト入力</td>
-                <td>info@example.com</td>
-                <td>結果報告などを希望する人のみ。</td>
-            </tr>
-            <tr>
-                <td>匿名公開可否</td>
-                <td>必須</td>
-                <td>ラジオボタン</td>
-                <td>匿名での公開に同意する / 同意しない</td>
-                <td>意見がLPや会場で紹介される可能性を示唆。</td>
-            </tr>
-            <tr>
-                <td>個人情報の取扱い同意</td>
-                <td>必須</td>
-                <td>チェックボックス</td>
-                <td>個人情報の取扱いに同意する</td>
-                <td>プライバシーポリシーへのリンクを併記。</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h3>2. 参加申込フォーム（正確な情報収集と配慮）</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>項目名</th>
-                <th>必須/任意</th>
-                <th>入力形式</th>
-                <th>プレースホルダー例</th>
-                <th>補足説明</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>氏名</td>
-                <td>必須</td>
-                <td>テキスト入力</td>
-                <td>小松 太郎</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>所属・会社名</td>
-                <td>任意</td>
-                <td>テキスト入力</td>
-                <td>株式会社〇〇 / 〇〇大学</td>
-                <td>学生や個人の場合は空欄でOKであることを注記。</td>
-            </tr>
-            <tr>
-                <td>役職または立場</td>
-                <td>任意</td>
-                <td>テキスト入力</td>
-                <td>会社員、学生、主婦 など</td>
-                <td>属性把握のため。</td>
-            </tr>
-            <tr>
-                <td>メールアドレス</td>
-                <td>必須</td>
-                <td>テキスト入力</td>
-                <td>info@example.com</td>
-                <td>自動返信メール送付用。</td>
-            </tr>
-            <tr>
-                <td>電話番号</td>
-                <td>必須</td>
-                <td>テキスト入力</td>
-                <td>090-XXXX-XXXX</td>
-                <td>当日緊急時の連絡用。</td>
-            </tr>
-            <tr>
-                <td>参加希望テーマ</td>
-                <td>必須</td>
-                <td>ラジオボタン</td>
-                <td>（D項の3テーマから1つ選択）</td>
-                <td>グループ分けの参考に。第2希望まで取っても可。</td>
-            </tr>
-            <tr>
-                <td>事前に共有したい意見</td>
-                <td>任意</td>
-                <td>テキストエリア</td>
-                <td>当日の対話で聞いてみたいことなどがあればご記入ください</td>
-                <td>事前の熱量を高める効果あり。</td>
-            </tr>
-            <tr>
-                <td>配慮してほしいこと</td>
-                <td>任意</td>
-                <td>テキストエリア</td>
-                <td>例：車椅子での参加です / 小さな子どもを連れて行きます</td>
-                <td>バリアフリーや託児等の運営配慮用。</td>
-            </tr>
-            <tr>
-                <td>個人情報の取扱い同意</td>
-                <td>必須</td>
-                <td>チェックボックス</td>
-                <td>個人情報の取扱いに同意する</td>
-                <td>プライバシーポリシーへのリンクを併記。</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- G. FAQ設計 -->
-    <h2>G. FAQ設計</h2>
-    <p>参加者の心理的ハードルを下げる、温かみのある回答を用意します。</p>
-    <ul>
-        <li><strong>Q. 初めてでも参加できますか？</strong><br>
-        A. もちろんです！参加者の多くが、こうした対話の場には初めて参加される方です。アットホームな雰囲気で進行しますので、安心してお越しください。</li>
-        <li><strong>Q. 発言に自信がなくても大丈夫ですか？</strong><br>
-        A. 大丈夫です。上手なプレゼンを求める場ではありません。ご自身の生活の中での素直な気づきを、数言お話しいただくだけで十分な貢献になります。他の人の意見を聞くだけでも大歓迎です。</li>
-        <li><strong>Q. 一人で参加しても大丈夫ですか？</strong><br>
-        A. はい、お一人での参加も全く問題ありません。当日は少人数のグループに分かれてお話しいただくため、すぐに周囲の方と打ち解けることができます。</li>
-        <li><strong>Q. 事前に準備するものはありますか？</strong><br>
-        A. 特に準備していただく資料等はありません。「小松について思うこと」を少しだけ頭に浮かべて、リラックスしてお越しください。</li>
-        <li><strong>Q. 意見投稿だけでも参加になりますか？</strong><br>
-        A. 立派な参加です！当日お越しいただけない方のご意見も、小松の未来を考える大切な材料として、当日の対話や今後のプロジェクトにしっかりと活かさせていただきます。</li>
-        <li><strong>Q. 投稿した意見はどのように使われますか？</strong><br>
-        A. 個人が特定されない形に整理した上で、当日の風会議での対話テーマや議論のヒントとして活用させていただきます。また、今後の小松市の施策や提言づくりの参考にもいたします。</li>
-        <li><strong>Q. AIはどのように使われますか？</strong><br>
-        A. 皆様からいただいた多くのご意見を「素早く整理・分類する」ための補助ツールとしてAIを使用します。AIが結論を出すわけではなく、最終的なアイデアや提言は、必ず参加者の皆様による「人の対話」を通じて決定いたします。</li>
-        <li><strong>Q. 子ども連れでも参加できますか？</strong><br>
-        A. ご参加いただけます。お申し込みの際、「配慮してほしいこと」の欄にその旨をご記入ください。（※託児スペースの有無など、実際の運営状況に合わせて追記してください）</li>
-    </ul>
-
-    <!-- H. 信頼性を高める掲載文 -->
-    <h2>H. 信頼性を高める掲載文（プライバシー・AI利用）</h2>
-    <div class="important-note">
-        <strong>【いただいたご意見の取り扱いと、対話づくりについて】</strong><br><br>
-        皆様からお寄せいただいた貴重なご意見は、お名前などの個人が特定されないよう細心の注意を払い、当日の対話や今後の提言づくりの大切な「声」として活用させていただきます。<br><br>
-        また本プロジェクトでは、より多くの声を漏らさずスピーディーに整理するため、意見の分類・構造化の補助としてAI（人工知能）を活用しています。<br>
-        ただし、AIはあくまで「意見の整理役」です。地域の未来をどうしていくかという最終的な結論や提言は、決してAI任せにせず、参加者の皆様や関係者との「温かい対話」を通じて、じっくりと検討・決定してまいります。
+  <section class="bg-light" id="voice-form">
+    <div class="container">
+      <div class="form-container">
+        <h2>声を届ける</h2>
+        <form id="voice-form-element">
+          <div class="form-group">
+            <label>小松で「変わるともっと良いと思うこと」</label>
+            <textarea name="v_change" required placeholder="例：交通の利便性、子育て支援など"></textarea>
+          </div>
+          <button type="submit" class="btn">送信する</button>
+        </form>
+      </div>
     </div>
+  </section>
+</main>
 
-    <!-- I. デザイン方針 -->
-    <h2>I. デザイン方針</h2>
-    <ul>
-        <li><strong>推奨カラー設計:</strong><br>
-        メインカラー：<code>さわやかな風を感じるブルー（例: #0078D4）</code> - 誠実さ、新しい風。<br>
-        アクセントカラー：<code>温かみのあるオレンジ（例: #FF8C00）</code> - CTAボタン等、対話の熱量や人の温もり。<br>
-        ベースカラー：<code>ライトグレー・オフホワイト</code> - 情報を邪魔しない清潔感のある背景。</li>
-        <li><strong>推奨フォント:</strong><br>
-        Webフォントのゴシック体（Noto Sans JPなど）。「行政的すぎる硬さ」を排除するため、ウェイト（太さ）でメリハリをつけ、可読性を最優先にする。</li>
-        <li><strong>写真の方向性:</strong><br>
-        小松市内の実際の風景（小松駅周辺、サイエンスヒルズ、自然風景など）を背景にぼかしつつ、そこにいる「市民（老若男女）」の自然な笑顔や真剣な表情を被写体にする。フリー素材でも日本人の日常的なものを使用し、海外素材は厳禁。</li>
-        <li><strong>イラスト・アイコンの方向性:</strong><br>
-        フラットデザインで、親しみやすい丸みを帯びたもの。アイコンは単色ではなく、2色程度（メイン＋アクセント）を使うとリッチになる。</li>
-        <li><strong>スマホUIの優先順位:</strong><br>
-        「参加する」「意見を送る」の2大アクションが、スクロール中も常に画面下部（固定フッターバー等）に表示される設計を強く推奨。タップ領域は44px以上を確保する。</li>
-        <li><strong>避けるべきデザイン:</strong><br>
-        × 官公庁の公募のような「文字ばかり・明朝体ベース・青と赤だけの強い配色」<br>
-        × サイバーすぎる「AI・未来都市」を強調したCG（人の温もりが消えるため）<br>
-        × 意識高すぎに見える「ビジネスセミナー風」の硬いレイアウト</li>
-        <li><strong>小松らしさを表現する方法:</strong><br>
-        過剰な「名産品アピール（九谷焼、建機など）」は主題がブレるため前面には出さないが、あしらいのカラーリングに九谷五彩（緑・黄・紫・紺青・赤）をさりげなく取り入れたり、写真の背景に小松らしさを忍ばせることで、地元民が無意識に「自分たちの街だ」と感じるローカライズを行う。</li>
-    </ul>
-
-</div>
+<script>
+  document.getElementById('voice-form-element').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('送信されました。ご協力ありがとうございます。');
+  });
+</script>
 
 </body>
 </html>
